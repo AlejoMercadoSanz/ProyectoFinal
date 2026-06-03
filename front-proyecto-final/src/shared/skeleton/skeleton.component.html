@@ -1,0 +1,60 @@
+
+<ng-container *ngIf="variant === 'text'">
+  <div
+    *ngFor="let r of rowArray; let last = last"
+    class="sk sk--text"
+    [style.width]="last && rows > 1 ? '65%' : (width || '100%')"
+    [style.height]="height || null"
+  ></div>
+</ng-container>
+
+<ng-container *ngIf="variant === 'title'">
+  <div
+    class="sk sk--title"
+    [style.width]="width || '45%'"
+    [style.height]="height || null"
+  ></div>
+</ng-container>
+
+<ng-container *ngIf="variant === 'avatar'">
+  <div
+    class="sk sk--avatar"
+    [style.width]="width || null"
+    [style.height]="height || null"
+  ></div>
+</ng-container>
+
+<ng-container *ngIf="variant === 'card'">
+  <div class="sk-card">
+    <div class="sk-card__header">
+      <div class="sk sk--avatar sk--sm"></div>
+      <div class="sk-card__header-lines">
+        <div class="sk sk--text" style="width: 55%"></div>
+        <div class="sk sk--text" style="width: 35%"></div>
+      </div>
+    </div>
+    <div class="sk sk--rect" style="height: 140px; margin-bottom: 0.75rem;"></div>
+    <div class="sk sk--text"></div>
+    <div class="sk sk--text" style="width: 75%"></div>
+    <div class="sk sk--text" style="width: 50%"></div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="variant === 'table-row'">
+  <div *ngFor="let r of rowArray" class="sk-table-row">
+    <div class="sk sk--text" style="width: 5%"></div>
+    <div class="sk sk--text" style="width: 20%"></div>
+    <div class="sk sk--text" style="width: 30%"></div>
+    <div class="sk sk--text" style="width: 20%"></div>
+    <div class="sk sk--text" style="width: 15%"></div>
+    <div class="sk sk--text" style="width: 8%"></div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="variant === 'rect'">
+  <div
+    class="sk sk--rect"
+    [style.width]="width || '100%'"
+    [style.height]="height || '80px'"
+  ></div>
+</ng-container>
