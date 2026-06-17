@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../shared/toast/toast.service';
-
-const MOCK_USER = 'admin';
-const MOCK_PASS = 'Admin123';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +21,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private toast: ToastService,
+    private authService: AuthService,
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
@@ -60,17 +59,19 @@ export class LoginComponent {
 
     this.isLoading = true;
 
-    // TODO: api
-    setTimeout(() => {
-      const { username, password } = this.loginForm.value;
-      if (username === MOCK_USER && password === MOCK_PASS) {
+    const { username, password } = this.loginForm.value;
+
+    this.authService.login({ nombreUsuario: username, password }).subscribe({
+      next: () => {
         this.toast.success('Sesión iniciada correctamente.');
         this.router.navigate(['/dashboard']);
-      } else {
+        this.isLoading = false;
+      },
+      error: () => {
         this.toast.error('Usuario o contraseña incorrectos.');
         this.loginForm.get('password')?.reset();
-      }
-      this.isLoading = false;
-    }, 1200);
+        this.isLoading = false;
+      },
+    });
   }
 }
