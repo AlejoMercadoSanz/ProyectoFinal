@@ -1,0 +1,16 @@
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\bin\Debug\net8.0\OdontoGestPro.Application.deps.json
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\bin\Debug\net8.0\OdontoGestPro.Application.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\bin\Debug\net8.0\OdontoGestPro.Application.pdb
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\bin\Debug\net8.0\OdontoGestPro.Domain.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\bin\Debug\net8.0\OdontoGestPro.Domain.pdb
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.csproj.AssemblyReference.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.AssemblyInfoInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.AssemblyInfo.cs
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.sourcelink.json
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGe.A0179387.Up2Date
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\refint\OdontoGestPro.Application.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\OdontoGestPro.Application.pdb
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Application\obj\Debug\net8.0\ref\OdontoGestPro.Application.dll

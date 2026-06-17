@@ -1,0 +1,12 @@
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\bin\Debug\net8.0\OdontoGestPro.Domain.deps.json
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\bin\Debug\net8.0\OdontoGestPro.Domain.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\bin\Debug\net8.0\OdontoGestPro.Domain.pdb
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.AssemblyInfoInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.AssemblyInfo.cs
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.sourcelink.json
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\refint\OdontoGestPro.Domain.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\OdontoGestPro.Domain.pdb
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Domain\obj\Debug\net8.0\ref\OdontoGestPro.Domain.dll

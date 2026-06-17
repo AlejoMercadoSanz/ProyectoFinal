@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A96EAC41-A7F6-46DB-B6E7-82A24F36A4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdontoGestPro.Domain", "src\OdontoGestPro.Domain\OdontoGestPro.Domain.csproj", "{B3172BF0-09D4-4965-8D79-85C4F226D21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdontoGestPro.Application", "src\OdontoGestPro.Application\OdontoGestPro.Application.csproj", "{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdontoGestPro.Infrastructure", "src\OdontoGestPro.Infrastructure\OdontoGestPro.Infrastructure.csproj", "{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdontoGestPro.Api", "src\OdontoGestPro.Api\OdontoGestPro.Api.csproj", "{A2A7BCF2-E81C-4256-8011-337D4F2A4220}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3172BF0-09D4-4965-8D79-85C4F226D21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3172BF0-09D4-4965-8D79-85C4F226D21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3172BF0-09D4-4965-8D79-85C4F226D21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3172BF0-09D4-4965-8D79-85C4F226D21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A7BCF2-E81C-4256-8011-337D4F2A4220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A7BCF2-E81C-4256-8011-337D4F2A4220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A7BCF2-E81C-4256-8011-337D4F2A4220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A7BCF2-E81C-4256-8011-337D4F2A4220}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3172BF0-09D4-4965-8D79-85C4F226D21B} = {A96EAC41-A7F6-46DB-B6E7-82A24F36A4D4}
+		{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED} = {A96EAC41-A7F6-46DB-B6E7-82A24F36A4D4}
+		{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1} = {A96EAC41-A7F6-46DB-B6E7-82A24F36A4D4}
+		{A2A7BCF2-E81C-4256-8011-337D4F2A4220} = {A96EAC41-A7F6-46DB-B6E7-82A24F36A4D4}
+	EndGlobalSection
+EndGlobal

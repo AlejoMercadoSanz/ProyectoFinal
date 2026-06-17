@@ -1,0 +1,6 @@
+@OdontoGestPro.Api_HostAddress = http://localhost:5027
+
+GET {{OdontoGestPro.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
