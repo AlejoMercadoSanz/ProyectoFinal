@@ -1,0 +1,33 @@
+<div class="modal-overlay" *ngIf="visible" (click)="onCerrar()">
+  <div class="modal modal--sm" (click)="$event.stopPropagation()">
+
+    <div class="modal__header">
+      <h2 class="modal__title">{{ titulo }}</h2>
+      <button class="modal__close" (click)="onCerrar()">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </button>
+    </div>
+
+    <div class="modal__body">
+      <div class="delete-modal__content">
+        <div class="delete-modal__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"></path>
+            <path d="M10 11v6"></path>
+            <path d="M14 11v6"></path>
+            <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"></path>
+          </svg>
+        </div>
+        <p class="delete-modal__title">{{ mensaje }}</p>
+        <p class="delete-modal__subtitle">{{ subtitulo }}</p>
+      </div>
+    </div>
+
+    <div class="modal__footer">
+      <button class="btn-secondary" (click)="onCerrar()">Cancelar</button>
+      <button class="btn-danger" (click)="onConfirmar()">Sí, eliminar</button>
+    </div>
+
+  </div>
+</div>

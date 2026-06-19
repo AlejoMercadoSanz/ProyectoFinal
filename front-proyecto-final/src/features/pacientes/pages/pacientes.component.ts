@@ -1,17 +1,19 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { PacienteService } from '../services/paciente.service';
 import { Paciente } from '../models/paciente.model';
 import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
+import { PacienteFormModalComponent } from '../components/paciente-form-modal.component';
+import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-pacientes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive, PacienteFormModalComponent, ConfirmDeleteModalComponent],
   templateUrl: './pacientes.component.html',
   styleUrls: ['./pacientes.component.css'],
 })
@@ -21,7 +23,6 @@ export class PacientesComponent implements OnInit {
   showModal = false;
   showDeleteModal = false;
   isSubmitting = false;
-  pacienteForm!: FormGroup;
   pacienteAEliminar: Paciente | null = null;
   user: { nombreUsuario: string; rol: string } | null = null;
 
@@ -31,7 +32,6 @@ export class PacientesComponent implements OnInit {
   currentPage = 1;
 
   constructor(
-    private fb: FormBuilder,
     private pacienteService: PacienteService,
     private authService: AuthService,
     private router: Router,
@@ -39,17 +39,6 @@ export class PacientesComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.user = this.authService.getUser();
-
-    this.pacienteForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(2)]],
-      apellido: ['', [Validators.required, Validators.minLength(2)]],
-      dni: ['', [Validators.required, Validators.minLength(7)]],
-      email: ['', [Validators.required, Validators.email]],
-      telefono: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      direccion: ['', Validators.required],
-      estado: ['Activo'],
-    });
   }
 
   ngOnInit(): void {
@@ -116,6 +105,31 @@ export class PacientesComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  abrirModal(): void {
+    this.showModal = true;
+  }
+
+  cerrarModal(): void {
+    this.showModal = false;
+  }
+
+  guardarPaciente(data: any): void {
+    this.isSubmitting = true;
+    this.pacienteService.create(data).subscribe({
+      next: () => {
+        this.toast.success('Paciente registrado correctamente.');
+        this.cerrarModal();
+        this.currentPage = 1;
+        this.isSubmitting = false;
+        this.loadPacientes(this.searchControl.value ?? '');
+      },
+      error: () => {
+        this.toast.error('No se pudo registrar el paciente.');
+        this.isSubmitting = false;
+      },
+    });
+  }
+
   abrirModalEliminar(paciente: Paciente): void {
     this.pacienteAEliminar = paciente;
     this.showDeleteModal = true;
@@ -132,51 +146,12 @@ export class PacientesComponent implements OnInit {
     this.pacienteService.delete(this.pacienteAEliminar.id).subscribe({
       next: () => {
         this.toast.success('Paciente eliminado correctamente.');
-        this.showDeleteModal = false;
-        this.pacienteAEliminar = null;
+        this.cerrarModalEliminar();
         this.loadPacientes(this.searchControl.value ?? '');
       },
       error: () => {
         this.toast.error('No se pudo eliminar el paciente.');
-        this.showDeleteModal = false;
-        this.pacienteAEliminar = null;
-      },
-    });
-  }
-
-  abrirModal(): void {
-    this.pacienteForm.reset({ estado: 'Activo' });
-    this.showModal = true;
-  }
-
-  cerrarModal(): void {
-    this.showModal = false;
-    this.pacienteForm.reset();
-  }
-
-  isFieldInvalid(field: string): boolean {
-    const control = this.pacienteForm.get(field);
-    return !!(control && control.invalid && (control.dirty || control.touched));
-  }
-
-  guardarPaciente(): void {
-    if (this.pacienteForm.invalid) {
-      this.pacienteForm.markAllAsTouched();
-      return;
-    }
-
-    this.isSubmitting = true;
-    this.pacienteService.create(this.pacienteForm.value).subscribe({
-      next: () => {
-        this.toast.success('Paciente registrado correctamente.');
-        this.cerrarModal();
-        this.currentPage = 1;
-        this.isSubmitting = false;
-        this.loadPacientes(this.searchControl.value ?? '');
-      },
-      error: () => {
-        this.toast.error('No se pudo registrar el paciente.');
-        this.isSubmitting = false;
+        this.cerrarModalEliminar();
       },
     });
   }

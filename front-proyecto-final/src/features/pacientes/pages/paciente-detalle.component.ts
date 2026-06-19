@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive, ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PacienteService } from '../services/paciente.service';
 import { Paciente } from '../models/paciente.model';
@@ -10,7 +10,7 @@ import { ToastService } from '../../../shared/toast/toast.service';
 @Component({
   selector: 'app-paciente-detalle',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, ReactiveFormsModule],
   templateUrl: './paciente-detalle.component.html',
   styleUrls: ['./paciente-detalle.component.css'],
 })

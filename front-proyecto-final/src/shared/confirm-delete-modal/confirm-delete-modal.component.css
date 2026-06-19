@@ -1,0 +1,114 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 580px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.modal--sm { max-width: 420px; }
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e9f0;
+}
+
+.modal__title { font-size: 1.05rem; font-weight: 700; color: #1e293b; margin: 0; }
+
+.modal__close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.modal__close svg { width: 18px; height: 18px; }
+.modal__body { padding: 1.5rem; }
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e9f0;
+}
+
+.delete-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.delete-modal__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #fee2e2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-modal__icon svg { width: 24px; height: 24px; }
+.delete-modal__title { font-size: 1rem; font-weight: 700; color: #1e293b; margin: 0; }
+.delete-modal__subtitle { font-size: 0.83rem; color: #94a3b8; margin: 0; line-height: 1.5; }
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.btn-secondary:hover { background-color: #f8fafc; }
+
+.btn-danger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #dc2626;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.btn-danger:hover { background-color: #b91c1c; }

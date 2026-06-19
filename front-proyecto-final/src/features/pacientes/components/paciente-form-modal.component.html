@@ -1,0 +1,81 @@
+<div class="modal-overlay" *ngIf="visible" (click)="onCerrar()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="modal__header">
+      <h2 class="modal__title">Nuevo Paciente</h2>
+      <button class="modal__close" (click)="onCerrar()">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </button>
+    </div>
+
+    <div class="modal__body">
+      <div class="modal-form">
+
+        <div class="modal-form__row">
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('nombre')">
+            <label>Nombre</label>
+            <input type="text" [formControl]="$any(form.get('nombre'))" placeholder="Ej: María" />
+            <span *ngIf="isFieldInvalid('nombre')">Nombre requerido (mín. 2 caracteres).</span>
+          </div>
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('apellido')">
+            <label>Apellido</label>
+            <input type="text" [formControl]="$any(form.get('apellido'))" placeholder="Ej: García" />
+            <span *ngIf="isFieldInvalid('apellido')">Apellido requerido (mín. 2 caracteres).</span>
+          </div>
+        </div>
+
+        <div class="modal-form__row">
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('dni')">
+            <label>DNI</label>
+            <input type="text" [formControl]="$any(form.get('dni'))" placeholder="Ej: 30123456" />
+            <span *ngIf="isFieldInvalid('dni')">DNI requerido (mín. 7 dígitos).</span>
+          </div>
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('telefono')">
+            <label>Teléfono</label>
+            <input type="text" [formControl]="$any(form.get('telefono'))" placeholder="Ej: 351-555-1234" />
+            <span *ngIf="isFieldInvalid('telefono')">Teléfono requerido.</span>
+          </div>
+        </div>
+
+        <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('email')">
+          <label>Email</label>
+          <input type="email" [formControl]="$any(form.get('email'))" placeholder="Ej: paciente@email.com" />
+          <span *ngIf="isFieldInvalid('email')">Email inválido.</span>
+        </div>
+
+        <div class="modal-form__row">
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('fechaNacimiento')">
+            <label>Fecha de Nacimiento</label>
+            <input type="date" [formControl]="$any(form.get('fechaNacimiento'))" />
+            <span *ngIf="isFieldInvalid('fechaNacimiento')">Fecha requerida.</span>
+          </div>
+          <div class="modal-form__field">
+            <label>Estado</label>
+            <select [formControl]="$any(form.get('estado'))">
+              <option value="Activo">Activo</option>
+              <option value="Próxima Cita">Próxima Cita</option>
+              <option value="Completado">Completado</option>
+              <option value="Seguimiento">Seguimiento</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('direccion')">
+          <label>Dirección</label>
+          <input type="text" [formControl]="$any(form.get('direccion'))" placeholder="Ej: Av. Colón 1234, Córdoba" />
+          <span *ngIf="isFieldInvalid('direccion')">Dirección requerida.</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal__footer">
+      <button class="btn-secondary" (click)="onCerrar()" [disabled]="isSubmitting">Cancelar</button>
+      <button class="btn-primary" (click)="onGuardar()" [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Guardar Paciente</span>
+        <span *ngIf="isSubmitting">Guardando...</span>
+      </button>
+    </div>
+
+  </div>
+</div>

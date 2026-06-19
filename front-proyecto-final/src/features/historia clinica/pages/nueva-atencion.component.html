@@ -1,0 +1,214 @@
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a routerLink="/dashboard" class="sidebar__brand">
+      <div class="sidebar__brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z" />
+        </svg>
+      </div>
+      <div>
+        <p class="sidebar__brand-name">OdontoGest Pro</p>
+        <p class="sidebar__brand-tagline">Clinical Management</p>
+      </div>
+    </a>
+
+    <nav class="sidebar__nav">
+      <a routerLink="/dashboard" class="sidebar__link" routerLinkActive="sidebar__link--active" [routerLinkActiveOptions]="{exact: true}">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        Dashboard
+      </a>
+      <a routerLink="/pacientes" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+        Pacientes
+      </a>
+      <a routerLink="/calendario" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        Calendario
+      </a>
+      <a routerLink="/historial-clinica" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+        Historial Médico
+      </a>
+      <a routerLink="/cobros" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+        Cobros
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__breadcrumb">
+        <a [routerLink]="['/historial-clinica', pacienteId]" class="topbar__breadcrumb-link">Historial Médico</a>
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span>Nueva Atención</span>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__icon-btn" title="Notificaciones">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM8.05 16a2 2 0 003.9 0h-3.9z"/></svg>
+        </button>
+        <button class="topbar__user" (click)="logout()" title="Cerrar sesión">
+          <div class="topbar__user-info">
+            <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
+            <p class="topbar__user-role">{{ user?.rol }}</p>
+          </div>
+          <div class="topbar__user-avatar">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content" *ngIf="!isLoading && paciente">
+
+      <div class="page-header">
+        <h1 class="page-header__title">Nueva Atención</h1>
+        <div class="page-header__actions">
+          <button class="btn-secondary" (click)="cancelar()" [disabled]="isSubmitting">Cancelar</button>
+          <button class="btn-primary" (click)="guardarAtencion()" [disabled]="isSubmitting">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span *ngIf="!isSubmitting">Guardar Atención</span>
+            <span *ngIf="isSubmitting">Guardando...</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="atencion-grid">
+
+        <!-- Columna izquierda: ficha del paciente + adjuntos -->
+        <div class="col-left">
+
+          <!-- Ficha paciente -->
+          <div class="ficha-card">
+            <div class="ficha-card__avatar">{{ getInitials(paciente.nombre, paciente.apellido) }}</div>
+            <h2 class="ficha-card__nombre">{{ paciente.nombre }} {{ paciente.apellido }}</h2>
+            <p class="ficha-card__dni">DNI: {{ paciente.dni }}</p>
+            <span class="badge badge--activo">{{ paciente.estado }}</span>
+
+            <div class="ficha-card__stats">
+              <div class="ficha-card__stat">
+                <span class="ficha-card__stat-label">Teléfono</span>
+                <span class="ficha-card__stat-value">{{ paciente.telefono }}</span>
+              </div>
+              <div class="ficha-card__stat">
+                <span class="ficha-card__stat-label">Email</span>
+                <span class="ficha-card__stat-value">{{ paciente.email }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adjuntos -->
+          <div class="adjuntos-card">
+            <h3 class="adjuntos-card__title">Adjuntos de esta sesión</h3>
+            <div class="adjuntos-grid">
+              <label class="adjunto-upload" title="Adjuntar archivo">
+                <input type="file" multiple accept="image/*,.pdf,.doc,.docx" (change)="onArchivoSeleccionado($event)" style="display:none" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                <span>Adjuntar archivo</span>
+              </label>
+
+              <div class="adjunto-preview" *ngFor="let adj of adjuntosPreview; let i = index">
+  <img *ngIf="adj.url" [src]="adj.url" [alt]="adj.nombre" (click)="verAdjunto(adj)" style="cursor: pointer;" />
+                <div *ngIf="!adj.url" class="adjunto-preview__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                </div>
+                <p class="adjunto-preview__nombre">{{ adj.nombre }}</p>
+                <button class="adjunto-preview__remove" (click)="eliminarAdjunto(i)" title="Quitar">×</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Columna derecha: formulario -->
+        <div class="col-right">
+
+          <!-- Odontograma -->
+          <div class="odontograma-card">
+            <div class="odontograma-card__info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <div>
+                <p class="odontograma-card__title">Odontograma</p>
+                <p class="odontograma-card__subtitle">Seleccioné piezas dentales y procedimientos específicos</p>
+              </div>
+            </div>
+            <div class="odontograma-card__right">
+              <div class="odontograma-card__diente" *ngIf="form.get('dienteAfectado')?.value">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2z"/></svg>
+                Diente {{ form.get('dienteAfectado')?.value }}
+              </div>
+              <button class="btn-odontograma" (click)="irAlOdontograma()">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+                Abrir Odontograma
+              </button>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div class="form-card">
+
+            <div class="form-row">
+              <div class="form-field" [class.form-field--error]="isFieldInvalid('fecha')">
+                <label>Fecha de Atención</label>
+                <input type="date" [formControl]="$any(form.get('fecha'))" />
+                <span *ngIf="isFieldInvalid('fecha')">Fecha requerida.</span>
+              </div>
+              <div class="form-field" [class.form-field--error]="isFieldInvalid('tipo')">
+                <label>Tipo de Tratamiento</label>
+                <select [formControl]="$any(form.get('tipo'))">
+                  <option value="">Seleccioná...</option>
+                  <option *ngFor="let tipo of tiposTratamiento" [value]="tipo">{{ tipo }}</option>
+                </select>
+                <span *ngIf="isFieldInvalid('tipo')">Tipo requerido.</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field" [class.form-field--error]="isFieldInvalid('estado')">
+                <label>Estado</label>
+                <select [formControl]="$any(form.get('estado'))">
+                  <option value="Completado">Completado</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Próximo">Próximo</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Descripción</label>
+                <input type="text" [formControl]="$any(form.get('descripcion'))" placeholder="Ej: Endodoncia Premolar Superior" [class.input--error]="isFieldInvalid('descripcion')" />
+                <span *ngIf="isFieldInvalid('descripcion')" class="form-field__error">Descripción requerida.</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Evolución y Notas Clínicas</label>
+              <textarea [formControl]="$any(form.get('notasClinicas'))" rows="6" placeholder="Escribá aquí los detalles del procedimiento, observaciones y recomendaciones..."></textarea>
+            </div>
+
+            <!-- Atajos rápidos -->
+            <div class="atajos">
+              <span class="atajos__label">Atajos rápidos:</span>
+              <button *ngFor="let atajo of atajosRapidos" class="atajo-btn" type="button" (click)="agregarAtajo(atajo)">
+                + {{ atajo }}
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <div class="loading-state" *ngIf="isLoading">
+      <p>Cargando...</p>
+    </div>
+
+  </div>
+</div>

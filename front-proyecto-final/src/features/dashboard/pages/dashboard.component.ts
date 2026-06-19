@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../auth/login/services/auth.service';
 
 interface Cita {
@@ -19,7 +19,7 @@ interface Recordatorio {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })

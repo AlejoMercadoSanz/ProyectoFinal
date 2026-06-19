@@ -1,0 +1,354 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e9f0;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0 0.25rem;
+  text-decoration: none;
+}
+
+.sidebar__brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  background-color: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__brand-icon svg { width: 20px; height: 20px; }
+.sidebar__brand-name { font-weight: 700; font-size: 0.95rem; color: #1e3a8a; line-height: 1.2; }
+.sidebar__brand-tagline { font-size: 0.7rem; color: #94a3b8; }
+.sidebar__nav { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar__link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.sidebar__link:hover { background-color: #f1f5f9; color: #334155; }
+.sidebar__link--active { background-color: #eff6ff; color: #2563eb; }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+/* ===== Topbar ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e9f0;
+}
+
+.topbar__title { font-size: 1rem; font-weight: 700; color: #1e293b; white-space: nowrap; }
+
+.topbar__search {
+  position: relative;
+  flex: 1;
+  max-width: 360px;
+  margin: 0 1.5rem;
+}
+
+.topbar__search svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+}
+
+.topbar__search input {
+  width: 100%;
+  padding: 0.55rem 0.75rem 0.55rem 2.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  background-color: #f8fafc;
+  color: #334155;
+}
+
+.topbar__actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.topbar__icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.topbar__icon-btn svg { width: 16px; height: 16px; }
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.topbar__user-name { font-size: 0.85rem; font-weight: 600; color: #1e293b; text-transform: capitalize; }
+.topbar__user-role { font-size: 0.7rem; color: #94a3b8; }
+
+.topbar__user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar__user-avatar svg { width: 20px; height: 20px; }
+
+/* ===== Content ===== */
+.content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
+/* ===== Controls ===== */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.calendar-controls__nav { display: flex; align-items: center; gap: 1rem; }
+
+.calendar-controls__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  min-width: 180px;
+}
+
+.calendar-controls__arrows { display: flex; gap: 0.4rem; }
+
+.arrow-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.arrow-btn svg { width: 16px; height: 16px; }
+.arrow-btn:hover { background-color: #f8fafc; }
+
+.btn-hoy {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-hoy:hover { background-color: #f8fafc; }
+
+.calendar-controls__views {
+  display: flex;
+  background-color: #f1f5f9;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.view-btn {
+  border: none;
+  background: none;
+  padding: 0.4rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.view-btn--active { background-color: #ffffff; color: #2563eb; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+/* ===== Calendar Grid ===== */
+.calendar-grid {
+  background-color: #ffffff;
+  border: 1px solid #e5e9f0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-grid__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #e5e9f0;
+  background-color: #f8fafc;
+}
+
+.calendar-grid__day-label {
+  text-align: center;
+  padding: 0.65rem 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendar-grid__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex: 1;
+  min-height: 100px;
+}
+
+.calendar-grid__cell {
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.calendar-grid__cell:nth-child(7n) { border-right: none; }
+
+.calendar-grid__cell--otro-mes { background-color: #fafbfc; }
+.calendar-grid__cell--otro-mes .calendar-grid__cell-numero { color: #cbd5e1; }
+
+.calendar-grid__cell--hoy { background-color: #eff6ff; }
+
+.calendar-grid__cell-numero {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  align-self: flex-start;
+}
+
+.calendar-grid__cell-numero--hoy {
+  background-color: #2563eb;
+  color: #ffffff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-grid__citas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+}
+
+.mini-cita {
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.mini-cita__hora { font-size: 0.62rem; font-weight: 700; line-height: 1.2; }
+.mini-cita__nombre { font-size: 0.65rem; font-weight: 600; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-cita__tipo { font-size: 0.58rem; opacity: 0.85; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.mini-cita__mas { font-size: 0.62rem; color: #94a3b8; margin: 0.1rem 0 0; padding-left: 0.2rem; }
+
+/* Estados de cita */
+.cita--confirmada { background-color: #cffafe; color: #0e7490; }
+.cita--pendiente { background-color: #fee2e2; color: #b91c1c; }
+.cita--cancelada { background-color: #f1f5f9; color: #64748b; }
+.cita--completada { background-color: #2563eb; color: #ffffff; }
+
+/* ===== Loading ===== */
+.loading-state { text-align: center; padding: 3rem; color: #94a3b8; }
+
+/* ===== FAB ===== */
+.fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(30, 58, 138, 0.4);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.fab svg { width: 24px; height: 24px; }
+.fab:hover { background-color: #1e40af; transform: scale(1.05); }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .calendar-grid__cell { min-height: 70px; padding: 0.25rem; }
+  .mini-cita__tipo { display: none; }
+}

@@ -1,0 +1,171 @@
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a routerLink="/dashboard" class="sidebar__brand">
+      <div class="sidebar__brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z" />
+        </svg>
+      </div>
+      <div>
+        <p class="sidebar__brand-name">OdontoGest Pro</p>
+        <p class="sidebar__brand-tagline">Clinical Management</p>
+      </div>
+    </a>
+
+    <nav class="sidebar__nav">
+      <a routerLink="/dashboard" class="sidebar__link" routerLinkActive="sidebar__link--active" [routerLinkActiveOptions]="{exact: true}">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        Dashboard
+      </a>
+      <a routerLink="/pacientes" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+        Pacientes
+      </a>
+      <a routerLink="/calendario" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        Calendario
+      </a>
+      <a routerLink="/historial-clinica" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+        Historial Médico
+      </a>
+      <a routerLink="/cobros" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+        Cobros
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar__breadcrumb">
+        <a routerLink="/historial-clinica" class="topbar__breadcrumb-link">Historial Médico</a>
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span class="topbar__breadcrumb-link" style="cursor:pointer" (click)="volver()">Nueva Atención</span>
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span>Selección de Piezas Dentales</span>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__user" (click)="logout()">
+          <div class="topbar__user-info">
+            <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
+            <p class="topbar__user-role">{{ user?.rol }}</p>
+          </div>
+          <div class="topbar__user-avatar">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="odonto-header">
+        <h1 class="odonto-header__title">Selección de Piezas Dentales</h1>
+        <p class="odonto-header__subtitle">Hacé clic en un diente para seleccionarlo. Clic adicional para cambiar su estado.</p>
+      </div>
+
+      <!-- Leyenda -->
+      <div class="leyenda">
+        <div class="leyenda__item" *ngFor="let item of leyenda">
+          <span class="leyenda__dot" [style.background-color]="item.color"></span>
+          {{ item.label }}
+        </div>
+      </div>
+
+      <!-- Diente seleccionado -->
+      <div class="seleccion-info" *ngIf="dientesSeleccionados.length > 0">
+  <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+  {{ dientesSeleccionados.length }} pieza(s) seleccionada(s): {{ dientesSeleccionados.map(d => d.numero).join(', ') }}
+</div>
+
+      <!-- Odontograma -->
+      <div class="odontograma-wrapper">
+
+        <!-- Cuadrantes superiores -->
+        <div class="cuadrantes-superiores">
+          <div class="cuadrante">
+            <p class="cuadrante__label">CUADRANTE 1</p>
+            <div class="dientes-row">
+              <div *ngFor="let diente of cuadrante1"
+                [class]="getDienteClass(diente)"
+                (click)="toggleDiente(diente)"
+                [title]="'Diente ' + diente.numero">
+                <div class="diente__corona"></div>
+                <div class="diente__raiz"></div>
+                <span class="diente__numero">{{ diente.numero }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cuadrante">
+            <p class="cuadrante__label">CUADRANTE 2</p>
+            <div class="dientes-row">
+              <div *ngFor="let diente of cuadrante2"
+                [class]="getDienteClass(diente)"
+                (click)="toggleDiente(diente)"
+                [title]="'Diente ' + diente.numero">
+                <div class="diente__corona"></div>
+                <div class="diente__raiz"></div>
+                <span class="diente__numero">{{ diente.numero }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="separador-horizontal"></div>
+
+        <!-- Cuadrantes inferiores -->
+        <div class="cuadrantes-inferiores">
+          <div class="cuadrante">
+            <div class="dientes-row">
+              <div *ngFor="let diente of cuadrante4"
+                [class]="getDienteClass(diente)"
+                (click)="toggleDiente(diente)"
+                [title]="'Diente ' + diente.numero">
+                <div class="diente__numero">{{ diente.numero }}</div>
+                <div class="diente__raiz diente__raiz--inferior"></div>
+                <div class="diente__corona diente__corona--inferior"></div>
+              </div>
+            </div>
+            <p class="cuadrante__label">CUADRANTE 4</p>
+          </div>
+
+          <div class="cuadrante">
+            <div class="dientes-row">
+              <div *ngFor="let diente of cuadrante3"
+                [class]="getDienteClass(diente)"
+                (click)="toggleDiente(diente)"
+                [title]="'Diente ' + diente.numero">
+                <div class="diente__numero">{{ diente.numero }}</div>
+                <div class="diente__raiz diente__raiz--inferior"></div>
+                <div class="diente__corona diente__corona--inferior"></div>
+              </div>
+            </div>
+            <p class="cuadrante__label">CUADRANTE 3</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="odonto-footer">
+        <button class="btn-secondary" (click)="volver()">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Volver a Nueva Atención
+        </button>
+        <p class="odonto-footer__hint">Verificá las piezas antes de confirmar</p>
+        <button class="btn-primary" (click)="confirmarSeleccion()">
+          Confirmar Selección
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+
+    </main>
+  </div>
+</div>

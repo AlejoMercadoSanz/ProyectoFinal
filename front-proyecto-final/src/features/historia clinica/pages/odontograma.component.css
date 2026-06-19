@@ -1,0 +1,324 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e9f0;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0 0.25rem;
+  text-decoration: none;
+}
+
+.sidebar__brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.5rem;
+  background-color: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__brand-icon svg { width: 20px; height: 20px; }
+.sidebar__brand-name { font-weight: 700; font-size: 0.95rem; color: #1e3a8a; line-height: 1.2; }
+.sidebar__brand-tagline { font-size: 0.7rem; color: #94a3b8; }
+.sidebar__nav { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar__link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.sidebar__link:hover { background-color: #f1f5f9; color: #334155; }
+.sidebar__link--active { background-color: #eff6ff; color: #2563eb; }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e9f0;
+  gap: 1rem;
+}
+
+.topbar__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.topbar__breadcrumb svg { width: 14px; height: 14px; }
+
+.topbar__breadcrumb-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.topbar__breadcrumb-link:hover { text-decoration: underline; }
+
+.topbar__actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.topbar__user-info { text-align: right; }
+.topbar__user-name { font-size: 0.85rem; font-weight: 600; color: #1e293b; text-transform: capitalize; }
+.topbar__user-role { font-size: 0.7rem; color: #94a3b8; }
+
+.topbar__user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar__user-avatar svg { width: 20px; height: 20px; }
+
+.content { padding: 1.5rem; flex: 1; max-width: 900px; margin: 0 auto; width: 100%; }
+
+.odonto-header { margin-bottom: 1.25rem; }
+.odonto-header__title { font-size: 1.3rem; font-weight: 700; color: #1e293b; margin: 0 0 0.25rem; }
+.odonto-header__subtitle { font-size: 0.82rem; color: #94a3b8; margin: 0; }
+
+/* ===== Leyenda ===== */
+.leyenda {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e9f0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.leyenda__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.leyenda__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===== Selección info ===== */
+.seleccion-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.seleccion-info svg { width: 16px; height: 16px; }
+
+/* ===== Odontograma ===== */
+.odontograma-wrapper {
+  background-color: #ffffff;
+  border: 1px solid #e5e9f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cuadrantes-superiores,
+.cuadrantes-inferiores {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.separador-horizontal {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 1rem 0;
+}
+
+.cuadrante { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.cuadrante__label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+
+.dientes-row { display: flex; gap: 4px; }
+
+/* ===== Diente ===== */
+.diente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 36px;
+  gap: 2px;
+  transition: transform 0.1s ease;
+}
+
+.diente:hover { transform: scale(1.1); }
+
+.diente__corona {
+  width: 28px;
+  height: 22px;
+  border-radius: 6px 6px 3px 3px;
+  background-color: #e2e8f0;
+  border: 2px solid #cbd5e1;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.diente__corona--inferior {
+  border-radius: 3px 3px 6px 6px;
+}
+
+.diente__raiz {
+  width: 14px;
+  height: 16px;
+  background-color: #e2e8f0;
+  border-radius: 0 0 4px 4px;
+  border: 2px solid #cbd5e1;
+  border-top: none;
+  transition: background-color 0.15s ease;
+}
+
+.diente__raiz--inferior {
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
+  border-top: 2px solid #cbd5e1;
+}
+
+.diente__numero {
+  font-size: 0.6rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+}
+
+/* ===== Estados ===== */
+.diente--seleccionado .diente__corona,
+.diente--seleccionado .diente__raiz {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+}
+
+.diente--seleccionado .diente__numero { color: #2563eb; }
+
+.diente--caries .diente__corona,
+.diente--caries .diente__raiz {
+  background-color: #dc2626;
+  border-color: #b91c1c;
+}
+
+.diente--caries .diente__numero { color: #dc2626; }
+
+.diente--tratado .diente__corona,
+.diente--tratado .diente__raiz {
+  background-color: #0891b2;
+  border-color: #0e7490;
+}
+
+.diente--tratado .diente__numero { color: #0891b2; }
+
+/* ===== Footer ===== */
+.odonto-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.odonto-footer__hint { font-size: 0.78rem; color: #94a3b8; margin: 0; }
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-primary svg { width: 16px; height: 16px; }
+.btn-primary:hover { background-color: #1d4ed8; }
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-secondary svg { width: 16px; height: 16px; }
+.btn-secondary:hover { background-color: #f8fafc; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .diente { width: 28px; }
+  .diente__corona { width: 22px; height: 18px; }
+  .diente__raiz { width: 10px; height: 12px; }
+}

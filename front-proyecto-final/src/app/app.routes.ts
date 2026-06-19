@@ -31,6 +31,42 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'historial-clinica',
+    loadComponent: () =>
+      import('../features/historia clinica/pages/historial.component').then(m => m.HistorialComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'historial-clinica/:pacienteId/odontograma',
+    loadComponent: () =>
+      import('../features/historia clinica/pages/odontograma.component').then(m => m.OdontogramaComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'historial-clinica/:pacienteId/nueva-atencion/:tratamientoId',
+    loadComponent: () =>
+      import('../features/historia clinica/pages/nueva-atencion.component').then(m => m.NuevaAtencionComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'historial-clinica/:pacienteId/nueva-atencion',
+    loadComponent: () =>
+      import('../features/historia clinica/pages/nueva-atencion.component').then(m => m.NuevaAtencionComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'historial-clinica/:pacienteId',
+    loadComponent: () =>
+      import('../features/historia clinica/pages/historial-paciente.component').then(m => m.HistorialPacienteComponent),
+    canActivate: [authGuard],
+  },
+  {
+  path: 'calendario',
+  loadComponent: () =>
+    import('../features/calendario/pages/calendario.component').then(m => m.CalendarioComponent),
+  canActivate: [authGuard],
+},
+  {
     path: '**',
     redirectTo: 'login',
   },
