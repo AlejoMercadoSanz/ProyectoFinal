@@ -1,5 +1,14 @@
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.csproj.AssemblyReference.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.AssemblyInfoInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.AssemblyInfo.cs
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.sourcelink.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\appsettings.json
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Api.staticwebassets.runtime.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Api.exe
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Api.deps.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Api.runtimeconfig.json
@@ -7,7 +16,9 @@ C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Api.pdb
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\BCrypt-Net-Next.dll
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -126,14 +137,6 @@ C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Application.pdb
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Infrastructure.pdb
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\OdontoGestPro.Domain.pdb
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.csproj.AssemblyReference.cache
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.AssemblyInfoInputs.cache
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.AssemblyInfo.cs
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.csproj.CoreCompileInputs.cache
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.sourcelink.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\staticwebassets\msbuild.OdontoGestPro.Api.Microsoft.AspNetCore.StaticWebAssets.props
@@ -148,5 +151,3 @@ C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.pdb
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.genruntimeconfig.cache
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\ref\OdontoGestPro.Api.dll
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\BCrypt-Net-Next.dll
-C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -9,6 +9,7 @@ using OdontoGestPro.Infrastructure.Repositories;
 using OdontoGestPro.Infrastructure.Security;
 using OdontoGestPro.Infrastructure.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // --- Configuración de JwtSettings (lectura tipada desde appsettings.json) ---
@@ -25,6 +26,12 @@ builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<ITratamientoRepository, TratamientoRepository>();
+builder.Services.AddScoped<ITratamientoService, TratamientoService>();
+builder.Services.AddScoped<IAdjuntoRepository, AdjuntoRepository>();
+builder.Services.AddScoped<IAdjuntoService, AdjuntoService>();
+builder.Services.AddScoped<ICitaRepository, CitaRepository>();
+builder.Services.AddScoped<ICitaService, CitaService>();
 
 // --- Autenticación JWT ---
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>()!;
@@ -116,5 +123,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseStaticFiles();
 app.Run();

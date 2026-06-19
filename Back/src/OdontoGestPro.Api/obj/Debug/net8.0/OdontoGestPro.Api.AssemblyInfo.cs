@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OdontoGestPro.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5258a78b82380dcf44324252d8cafcf77961fe0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+951677ed630cb6e17c7de73dc647c6fd9f9b412f")]
 [assembly: System.Reflection.AssemblyProductAttribute("OdontoGestPro.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OdontoGestPro.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

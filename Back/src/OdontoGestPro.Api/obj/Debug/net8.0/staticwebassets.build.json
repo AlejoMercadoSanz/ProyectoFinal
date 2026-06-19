@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "EwBc1OjhGTPGqwOiaMW3cRDacPAjoBM7vJ4qM9SOw0I=",
+  "Hash": "vnl4s/B7eAlkrF8Urqsrai+xTBxXFy8fD7pq6eAAMS0=",
   "Source": "OdontoGestPro.Api",
   "BasePath": "_content/OdontoGestPro.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "OdontoGestPro.Api\\wwwroot",
+      "Source": "OdontoGestPro.Api",
+      "ContentRoot": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\wwwroot\\",
+      "BasePath": "_content/OdontoGestPro.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\wwwroot\\uploads\\51e18ee1-822c-47dd-aa3d-f73603683c89.png",
+      "SourceId": "OdontoGestPro.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\wwwroot\\",
+      "BasePath": "_content/OdontoGestPro.Api",
+      "RelativePath": "uploads/51e18ee1-822c-47dd-aa3d-f73603683c89.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\51e18ee1-822c-47dd-aa3d-f73603683c89.png"
+    },
+    {
+      "Identity": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\wwwroot\\uploads\\624fb377-db32-473c-b75d-82f71c96a275.png",
+      "SourceId": "OdontoGestPro.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\wwwroot\\",
+      "BasePath": "_content/OdontoGestPro.Api",
+      "RelativePath": "uploads/624fb377-db32-473c-b75d-82f71c96a275.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\624fb377-db32-473c-b75d-82f71c96a275.png"
+    }
+  ]
 }
