@@ -35,6 +35,7 @@ public class TratamientoService : ITratamientoService
             NotasClinicas = request.NotasClinicas,
             Estado = request.Estado,
             Fecha = request.Fecha,
+            DienteAfectado = request.DienteAfectado,
         };
 
         var created = await _tratamientoRepository.CreateAsync(tratamiento);
@@ -52,6 +53,7 @@ public class TratamientoService : ITratamientoService
             NotasClinicas = request.NotasClinicas,
             Estado = request.Estado,
             Fecha = request.Fecha,
+            DienteAfectado = request.DienteAfectado,
         };
 
         return await _tratamientoRepository.UpdateAsync(tratamiento);

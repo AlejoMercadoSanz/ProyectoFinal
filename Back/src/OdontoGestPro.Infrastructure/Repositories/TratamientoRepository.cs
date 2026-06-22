@@ -48,6 +48,7 @@ public class TratamientoRepository : ITratamientoRepository
         existing.NotasClinicas = tratamiento.NotasClinicas;
         existing.Estado = tratamiento.Estado;
         existing.Fecha = tratamiento.Fecha;
+        existing.DienteAfectado = tratamiento.DienteAfectado;
 
         await _context.SaveChangesAsync();
         return true;

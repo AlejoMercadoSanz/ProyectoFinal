@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.infrastructure\\services\\tratamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|solutionrelative:src\\odontogestpro.infrastructure\\services\\tratamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.infrastructure\\repositories\\tratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|solutionrelative:src\\odontogestpro.infrastructure\\repositories\\tratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2A7BCF2-E81C-4256-8011-337D4F2A4220}|src\\OdontoGestPro.Api\\OdontoGestPro.Api.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2A7BCF2-E81C-4256-8011-337D4F2A4220}|src\\OdontoGestPro.Api\\OdontoGestPro.Api.csproj|solutionrelative:src\\odontogestpro.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -47,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{B3172BF0-09D4-4965-8D79-85C4F226D21B}|src\\OdontoGestPro.Domain\\OdontoGestPro.Domain.csproj|solutionrelative:src\\odontogestpro.domain\\entities\\cita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.infrastructure\\repositories\\tratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|solutionrelative:src\\odontogestpro.infrastructure\\repositories\\tratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}|src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.application\\interfaces\\itratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}|src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj|solutionrelative:src\\odontogestpro.application\\interfaces\\itratamientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -61,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}|src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.application\\interfaces\\iadjuntoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}|src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj|solutionrelative:src\\odontogestpro.application\\interfaces\\iadjuntoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.infrastructure\\services\\tratamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23458D5D-7AA2-47D1-BBCF-9C8EB29065E1}|src\\OdontoGestPro.Infrastructure\\OdontoGestPro.Infrastructure.csproj|solutionrelative:src\\odontogestpro.infrastructure\\services\\tratamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5FA3A3F2-C631-4AAC-AB7D-099F49FEF8ED}|src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj|c:\\users\\alejo\\desktop\\trabajo final\\back\\src\\odontogestpro.application\\interfaces\\itratamientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -170,48 +170,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\Program.cs",
-              "RelativeDocumentMoniker": "src\\OdontoGestPro.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\Program.cs",
-              "RelativeToolTip": "src\\OdontoGestPro.Api\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAhwCgAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T23:29:14.862Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ICitaService.cs",
-              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
-              "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
-              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
-              "RelativeToolTip": "src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T23:09:20.634Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ICitaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
-              "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
-              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
-              "RelativeToolTip": "src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T23:09:07.334Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "CitaRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\DTOs\\Citas\\CitaRequestDto.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\DTOs\\Citas\\CitaRequestDto.cs",
@@ -223,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CitaDto.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\DTOs\\Citas\\CitaDto.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\DTOs\\Citas\\CitaDto.cs",
@@ -247,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Cita.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Domain\\Entities\\Cita.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Domain\\Entities\\Cita.cs",
@@ -259,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "OdontoGestProDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Persistence\\OdontoGestProDbContext.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Persistence\\OdontoGestProDbContext.cs",
@@ -267,12 +230,11 @@
               "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Persistence\\OdontoGestProDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T19:22:13.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-14T19:22:13.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "OdontoGestPro.Api.csproj",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\OdontoGestPro.Api.csproj",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Api\\OdontoGestPro.Api.csproj",
@@ -280,12 +242,73 @@
               "RelativeToolTip": "src\\OdontoGestPro.Api\\OdontoGestPro.Api.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-06-14T16:45:10.007Z",
+              "WhenOpened": "2026-06-14T16:45:10.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TratamientoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
+              "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
+              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
+              "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAADwvy8AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T19:43:52.472Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "TratamientoService.cs",
+              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
+              "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
+              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
+              "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAiwEMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T19:44:15.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ICitaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
+              "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
+              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
+              "RelativeToolTip": "src\\OdontoGestPro.Application\\Interfaces\\ICitaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T23:09:07.334Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\Program.cs",
+              "RelativeDocumentMoniker": "src\\OdontoGestPro.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\Program.cs",
+              "RelativeToolTip": "src\\OdontoGestPro.Api\\Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAhwCgAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T23:29:14.862Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICitaService.cs",
+              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
+              "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
+              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
+              "RelativeToolTip": "src\\OdontoGestPro.Application\\Interfaces\\ICitaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T23:09:20.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CitaRepository.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Repositories\\CitaRepository.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Repositories\\CitaRepository.cs",
@@ -293,12 +316,11 @@
               "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Repositories\\CitaRepository.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAUwEQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T23:11:49.648Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-18T23:11:49.648Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CitaService.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\CitaService.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Services\\CitaService.cs",
@@ -310,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CitasController.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Api\\Controllers\\CitasController.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Api\\Controllers\\CitasController.cs",
@@ -334,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "IAdjuntoService.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\IAdjuntoService.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\IAdjuntoService.cs",
@@ -358,31 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "TratamientoService.cs",
-              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
-              "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
-              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
-              "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Services\\TratamientoService.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAcwFEAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T19:44:15.531Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "TratamientoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
-              "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
-              "ToolTip": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
-              "RelativeToolTip": "src\\OdontoGestPro.Infrastructure\\Repositories\\TratamientoRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T19:43:52.472Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "AdjuntoService.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Infrastructure\\Services\\AdjuntoService.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Infrastructure\\Services\\AdjuntoService.cs",
@@ -394,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ITratamientoRepository.cs",
               "DocumentMoniker": "C:\\Users\\Alejo\\Desktop\\Trabajo Final\\Back\\src\\OdontoGestPro.Application\\Interfaces\\ITratamientoRepository.cs",
               "RelativeDocumentMoniker": "src\\OdontoGestPro.Application\\Interfaces\\ITratamientoRepository.cs",
@@ -618,8 +616,7 @@
               "RelativeToolTip": "src\\OdontoGestPro.Application\\OdontoGestPro.Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-06-14T19:24:45.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-14T19:24:45.183Z"
             },
             {
               "$type": "Document",
