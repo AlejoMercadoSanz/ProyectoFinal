@@ -44,7 +44,7 @@
 
     <!-- Topbar -->
     <header class="topbar">
-      <div class="topbar__title">Calendario Mensual</div>
+      <div class="topbar__title">{{ vistaActual === 'mes' ? 'Calendario Mensual' : 'Calendario Diario' }}</div>
       <div class="topbar__search">
         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
         <input type="text" placeholder="Buscar pacientes o citas..." />
@@ -68,9 +68,9 @@
     <!-- Content -->
     <main class="content">
 
-      <!-- Controles -->
+      <!-- Selector de vista (siempre visible) -->
       <div class="calendar-controls">
-        <div class="calendar-controls__nav">
+        <div class="calendar-controls__nav" *ngIf="vistaActual === 'mes'">
           <h1 class="calendar-controls__title">{{ nombreMesAnio }}</h1>
           <div class="calendar-controls__arrows">
             <button class="arrow-btn" (click)="mesAnterior()">
@@ -83,10 +83,22 @@
           <button class="btn-hoy" (click)="irAHoy()">Hoy</button>
         </div>
 
+        <div class="calendar-controls__nav" *ngIf="vistaActual === 'dia'">
+          <h1 class="calendar-controls__title calendar-controls__title--dia">{{ nombreDiaCompleto }}</h1>
+          <div class="calendar-controls__arrows">
+            <button class="arrow-btn" (click)="diaAnterior()">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </button>
+            <button class="arrow-btn" (click)="diaSiguiente()">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+          <button class="btn-hoy" (click)="irAHoyDia()">Hoy</button>
+        </div>
+
         <div class="calendar-controls__views">
-          <button class="view-btn" [class.view-btn--active]="vistaActual === 'mes'" (click)="vistaActual = 'mes'">Mes</button>
-          <button class="view-btn" [class.view-btn--active]="vistaActual === 'semana'" (click)="vistaActual = 'semana'">Semana</button>
-          <button class="view-btn" [class.view-btn--active]="vistaActual === 'dia'" (click)="vistaActual = 'dia'">Día</button>
+          <button class="view-btn" [class.view-btn--active]="vistaActual === 'mes'" (click)="cambiarVista('mes')">Mes</button>
+          <button class="view-btn" [class.view-btn--active]="vistaActual === 'dia'" (click)="cambiarVista('dia')">Día</button>
         </div>
       </div>
 
@@ -100,19 +112,34 @@
           <div class="calendar-grid__cell"
             *ngFor="let dia of semana"
             [class.calendar-grid__cell--otro-mes]="!dia.esDelMesActual"
-            [class.calendar-grid__cell--hoy]="dia.esHoy">
+            [class.calendar-grid__cell--hoy]="dia.esHoy"
+            (click)="abrirModalNueva(dia.fecha)">
 
             <span class="calendar-grid__cell-numero" [class.calendar-grid__cell-numero--hoy]="dia.esHoy">
               {{ dia.numero }}
             </span>
 
             <div class="calendar-grid__citas">
-              <div class="mini-cita" *ngFor="let cita of dia.citas.slice(0, 3)" [ngClass]="getEstadoColor(cita.estado)">
+              <div class="mini-cita" *ngFor="let cita of dia.citas.slice(0, 3)" [ngClass]="getEstadoColor(cita.estado)" (click)="abrirModalEditar(cita); $event.stopPropagation()">
                 <span class="mini-cita__hora">{{ formatHora(cita.fechaHora) }}</span>
                 <span class="mini-cita__nombre">{{ cita.pacienteNombre }} {{ cita.pacienteApellido }}</span>
                 <span class="mini-cita__tipo">{{ cita.tipoTratamiento }}</span>
               </div>
               <p class="mini-cita__mas" *ngIf="dia.citas.length > 3">+{{ dia.citas.length - 3 }} más</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista Día -->
+      <div class="day-view" *ngIf="vistaActual === 'dia'">
+        <div class="day-view__row" *ngFor="let bloque of horasDelDia">
+          <div class="day-view__hora">{{ bloque.hora }}</div>
+          <div class="day-view__slot" (click)="bloque.citas.length === 0 && abrirModalNueva(fechaDiaSeleccionado, bloque.hora)">
+            <div class="day-view__cita" *ngFor="let cita of bloque.citas" [ngClass]="getEstadoColor(cita.estado)" (click)="abrirModalEditar(cita); $event.stopPropagation()">
+              <span class="day-view__cita-hora">{{ formatHora(cita.fechaHora) }}</span>
+              <span class="day-view__cita-nombre">{{ cita.pacienteNombre }} {{ cita.pacienteApellido }}</span>
+              <span class="day-view__cita-tipo">{{ cita.tipoTratamiento }} · {{ cita.duracionMinutos }} min</span>
             </div>
           </div>
         </div>
@@ -126,8 +153,20 @@
   </div>
 
   <!-- FAB -->
-  <button class="fab">
+  <button class="fab" (click)="abrirModalNueva()">
     <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/></svg>
   </button>
+
+  <!-- Modal Cita -->
+  <app-cita-form-modal
+    [visible]="showModal"
+    [isSubmitting]="isSubmitting"
+    [citaEditar]="citaEditar"
+    [fechaPreseleccionada]="fechaPreseleccionada"
+    [horaPreseleccionada]="horaPreseleccionada"
+    (cerrar)="cerrarModal()"
+    (guardar)="guardarCita($event)"
+    (eliminar)="eliminarCita()">
+  </app-cita-form-modal>
 
 </div>

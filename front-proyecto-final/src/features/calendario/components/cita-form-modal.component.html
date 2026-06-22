@@ -1,0 +1,93 @@
+<div class="modal-overlay" *ngIf="visible" (click)="onCerrar()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="modal__header">
+      <h2 class="modal__title">{{ esEdicion ? 'Editar Cita' : 'Nueva Cita' }}</h2>
+      <button class="modal__close" (click)="onCerrar()">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </button>
+    </div>
+
+    <div class="modal__body">
+      <div class="modal-form">
+
+        <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('pacienteId')">
+          <label>Paciente</label>
+          <select [formControl]="$any(form.get('pacienteId'))">
+            <option value="">Seleccioná un paciente...</option>
+            <option *ngFor="let p of pacientes" [value]="p.id">{{ p.nombre }} {{ p.apellido }} — DNI {{ p.dni }}</option>
+          </select>
+          <span *ngIf="isFieldInvalid('pacienteId')">Seleccioná un paciente.</span>
+        </div>
+
+        <div class="modal-form__row">
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('fecha')">
+            <label>Fecha</label>
+            <input type="date" [formControl]="$any(form.get('fecha'))" />
+            <span *ngIf="isFieldInvalid('fecha')">Fecha requerida.</span>
+          </div>
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('hora')">
+            <label>Hora</label>
+            <input type="time" [formControl]="$any(form.get('hora'))" />
+            <span *ngIf="isFieldInvalid('hora')">Hora requerida.</span>
+          </div>
+        </div>
+
+        <div class="modal-form__row">
+          <div class="modal-form__field" [class.modal-form__field--error]="isFieldInvalid('tipoTratamiento')">
+            <label>Tipo de Tratamiento</label>
+            <select [formControl]="$any(form.get('tipoTratamiento'))">
+              <option value="">Seleccioná...</option>
+              <option *ngFor="let tipo of tiposTratamiento" [value]="tipo">{{ tipo }}</option>
+            </select>
+            <span *ngIf="isFieldInvalid('tipoTratamiento')">Tipo requerido.</span>
+          </div>
+          <div class="modal-form__field">
+            <label>Duración (minutos)</label>
+            <select [formControl]="$any(form.get('duracionMinutos'))">
+              <option [value]="15">15 min</option>
+              <option [value]="30">30 min</option>
+              <option [value]="45">45 min</option>
+              <option [value]="60">1 hora</option>
+              <option [value]="90">1 hora 30 min</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-form__field">
+          <label>Estado</label>
+          <select [formControl]="$any(form.get('estado'))">
+            <option value="Confirmada">Confirmada</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completada">Completada</option>
+            <option value="Cancelada">Cancelada</option>
+          </select>
+        </div>
+
+        <div class="modal-form__field">
+          <label>Notas</label>
+          <textarea [formControl]="$any(form.get('notas'))" rows="3" placeholder="Observaciones sobre la cita..."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal__footer">
+      <button *ngIf="esEdicion" class="btn-danger-outline" (click)="onEliminar()" [disabled]="isSubmitting">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"></path>
+        </svg>
+        Eliminar
+      </button>
+      <div class="modal__footer-right">
+        <button class="btn-secondary" (click)="onCerrar()" [disabled]="isSubmitting">Cancelar</button>
+        <button class="btn-primary" (click)="onGuardar()" [disabled]="isSubmitting">
+          <span *ngIf="!isSubmitting">{{ esEdicion ? 'Guardar Cambios' : 'Crear Cita' }}</span>
+          <span *ngIf="isSubmitting">Guardando...</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -17,6 +17,7 @@ interface Diente {
 })
 export class OdontogramaComponent implements OnInit {
   pacienteId!: number;
+  tratamientoId: string | null = null;
   dientePreseleccionado: string = '';
   user: { nombreUsuario: string; rol: string } | null = null;
 
@@ -47,12 +48,16 @@ export class OdontogramaComponent implements OnInit {
 
   ngOnInit(): void {
     this.pacienteId = Number(this.route.snapshot.paramMap.get('pacienteId'));
+    this.tratamientoId = this.route.snapshot.queryParamMap.get('tratamientoId');
     this.dientePreseleccionado = this.route.snapshot.queryParamMap.get('diente') ?? '';
 
     if (this.dientePreseleccionado) {
-      this.dientePreseleccionado.split(',').forEach(numStr => {
+      this.dientePreseleccionado.split(',').forEach(par => {
+        const [numStr, estadoStr] = par.split(':');
         const diente = this.findDiente(Number(numStr));
-        if (diente) diente.estado = 'seleccionado';
+        if (diente) {
+          diente.estado = (estadoStr as Diente['estado']) ?? 'seleccionado';
+        }
       });
     }
   }
@@ -78,18 +83,26 @@ export class OdontogramaComponent implements OnInit {
     return `diente diente--${diente.estado}`;
   }
 
+  private buildRuta(): any[] {
+    const ruta: any[] = ['/historial-clinica', this.pacienteId, 'nueva-atencion'];
+    if (this.tratamientoId) {
+      ruta.push(this.tratamientoId);
+    }
+    return ruta;
+  }
+
   confirmarSeleccion(): void {
     const seleccionados = this.dientesSeleccionados;
-    const numeros = seleccionados.map(d => d.numero).join(',');
+    const valor = seleccionados.map(d => `${d.numero}:${d.estado}`).join(',');
 
     this.router.navigate(
-      ['/historial-clinica', this.pacienteId, 'nueva-atencion'],
-      { queryParams: numeros ? { diente: numeros } : {} }
+      this.buildRuta(),
+      { queryParams: valor ? { diente: valor } : {} }
     );
   }
 
   volver(): void {
-    this.router.navigate(['/historial-clinica', this.pacienteId, 'nueva-atencion']);
+    this.router.navigate(this.buildRuta());
   }
 
   logout(): void {

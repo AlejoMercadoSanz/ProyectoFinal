@@ -508,3 +508,8 @@
   .sidebar { display: none; }
   .form-row { grid-template-columns: 1fr; }
 }
+.odontograma-card__dientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}

@@ -9,6 +9,8 @@ import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
 import { environment } from '../../../enviroments/environment';
 
+const DRAFT_KEY = 'odontogestpro_nueva_atencion_draft';
+
 @Component({
   selector: 'app-nueva-atencion',
   standalone: true,
@@ -25,7 +27,8 @@ export class NuevaAtencionComponent implements OnInit {
   user: { nombreUsuario: string; rol: string } | null = null;
 
   adjuntosSeleccionados: File[] = [];
-  adjuntosPreview: { nombre: string; tipo: string; url?: string }[] = [];
+  adjuntosPreview: { nombre: string; tipo: string; url?: string; adjuntoId?: number }[] = [];
+  adjuntosAEliminar: number[] = [];
 
   form: FormGroup;
 
@@ -46,6 +49,24 @@ export class NuevaAtencionComponent implements OnInit {
 
   get esEdicion(): boolean {
     return this.tratamientoId !== null;
+  }
+
+  get dientesParseados(): { numero: string; estado: string }[] {
+    const valor = this.form.get('dienteAfectado')?.value ?? '';
+    if (!valor) return [];
+    return valor.split(',').map((par: string) => {
+      const [numero, estado] = par.split(':');
+      return { numero, estado: estado ?? 'seleccionado' };
+    });
+  }
+
+  getEstadoLabel(estado: string): string {
+    switch (estado) {
+      case 'caries': return 'Caries';
+      case 'tratado': return 'Tratado';
+      case 'seleccionado': return 'Seleccionado';
+      default: return estado;
+    }
   }
 
   constructor(
@@ -79,18 +100,27 @@ export class NuevaAtencionComponent implements OnInit {
     const tratamientoIdParam = this.route.snapshot.paramMap.get('tratamientoId');
     this.tratamientoId = tratamientoIdParam ? Number(tratamientoIdParam) : null;
 
+    const draft = this.cargarBorrador();
     const dienteQueryParam = this.route.snapshot.queryParamMap.get('diente');
-    if (dienteQueryParam) {
-      this.form.get('dienteAfectado')?.setValue(dienteQueryParam);
-    }
 
     this.pacienteService.getById(this.pacienteId).subscribe({
       next: (paciente) => {
         this.paciente = paciente;
 
-        if (this.esEdicion) {
-          this.cargarTratamientoExistente();
+        if (draft) {
+          this.form.patchValue(draft.formValue);
+          if (dienteQueryParam) {
+            this.form.get('dienteAfectado')?.setValue(dienteQueryParam);
+          }
+          this.adjuntosPreview = draft.adjuntosPreview ?? [];
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        } else if (this.esEdicion) {
+          this.cargarTratamientoExistente(dienteQueryParam);
         } else {
+          if (dienteQueryParam) {
+            this.form.get('dienteAfectado')?.setValue(dienteQueryParam);
+          }
           this.isLoading = false;
           this.cdr.detectChanges();
         }
@@ -102,17 +132,16 @@ export class NuevaAtencionComponent implements OnInit {
     });
   }
 
-  cargarTratamientoExistente(): void {
+  cargarTratamientoExistente(dienteQueryParam?: string | null): void {
     this.tratamientoService.getById(this.tratamientoId!).subscribe({
       next: (tratamiento) => {
-        console.log('Tratamiento cargado:', tratamiento);
         this.form.patchValue({
           tipo: tratamiento.tipo,
           descripcion: tratamiento.descripcion,
           notasClinicas: tratamiento.notasClinicas,
           estado: tratamiento.estado,
           fecha: tratamiento.fecha.split('T')[0],
-          dienteAfectado: tratamiento.dienteAfectado,
+          dienteAfectado: dienteQueryParam ?? tratamiento.dienteAfectado,
         });
 
         if (tratamiento.adjuntos && tratamiento.adjuntos.length > 0) {
@@ -120,6 +149,7 @@ export class NuevaAtencionComponent implements OnInit {
             nombre: a.nombreArchivo,
             tipo: a.tipoArchivo,
             url: a.tipoArchivo.startsWith('image/') ? `${environment.apiUrl.replace('/api', '')}/${a.rutaArchivo}` : undefined,
+            adjuntoId: a.id,
           }));
         }
 
@@ -149,10 +179,34 @@ export class NuevaAtencionComponent implements OnInit {
   }
 
   irAlOdontograma(): void {
+    this.guardarBorrador();
+    const queryParams: any = { diente: this.form.get('dienteAfectado')?.value };
+    if (this.esEdicion) {
+      queryParams.tratamientoId = this.tratamientoId;
+    }
     this.router.navigate(
       ['/historial-clinica', this.pacienteId, 'odontograma'],
-      { queryParams: { diente: this.form.get('dienteAfectado')?.value } }
+      { queryParams }
     );
+  }
+
+  guardarBorrador(): void {
+    const draft = {
+      formValue: this.form.value,
+      adjuntosPreview: this.adjuntosPreview.filter(a => !!a.adjuntoId || !!a.url),
+    };
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  }
+
+  cargarBorrador(): { formValue: any; adjuntosPreview: any[] } | null {
+    const raw = sessionStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(DRAFT_KEY);
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
   }
 
   onArchivoSeleccionado(event: Event): void {
@@ -178,9 +232,17 @@ export class NuevaAtencionComponent implements OnInit {
   }
 
   eliminarAdjunto(index: number): void {
-    this.adjuntosSeleccionados.splice(index, 1);
-    this.adjuntosPreview.splice(index, 1);
+  const adjunto = this.adjuntosPreview[index];
+
+  if (adjunto.adjuntoId) {
+    this.adjuntosAEliminar.push(adjunto.adjuntoId);
+  } else {
+    const fileIndex = this.adjuntosSeleccionados.findIndex(f => f.name === adjunto.nombre);
+    if (fileIndex !== -1) this.adjuntosSeleccionados.splice(fileIndex, 1);
   }
+
+  this.adjuntosPreview.splice(index, 1);
+}
 
   async guardarAtencion(): Promise<void> {
     if (this.form.invalid) {
@@ -199,6 +261,9 @@ export class NuevaAtencionComponent implements OnInit {
     if (this.esEdicion) {
       this.tratamientoService.update(this.tratamientoId!, request).subscribe({
         next: async () => {
+          for (const adjuntoId of this.adjuntosAEliminar) {
+            await this.tratamientoService.eliminarAdjunto(this.tratamientoId!, adjuntoId).toPromise();
+          }
           if (this.adjuntosSeleccionados.length > 0) {
             for (const archivo of this.adjuntosSeleccionados) {
               await this.tratamientoService.subirAdjunto(this.tratamientoId!, archivo).toPromise();
@@ -241,9 +306,10 @@ export class NuevaAtencionComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
   verAdjunto(adj: { nombre: string; tipo: string; url?: string }): void {
-  if (adj.url) {
-    window.open(adj.url, '_blank');
+    if (adj.url) {
+      window.open(adj.url, '_blank');
+    }
   }
-}
 }

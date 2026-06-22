@@ -5,6 +5,7 @@ import { CitaService } from '../services/cita.service';
 import { Cita } from '../models/cita.model';
 import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
+import { CitaFormModalComponent } from '../components/cita-form-modal.component';
 
 interface DiaCalendario {
   fecha: Date;
@@ -17,17 +18,24 @@ interface DiaCalendario {
 @Component({
   selector: 'app-calendario',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, CitaFormModalComponent],
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css'],
 })
 export class CalendarioComponent implements OnInit {
   user: { nombreUsuario: string; rol: string } | null = null;
-  vistaActual: 'mes' | 'semana' | 'dia' = 'mes';
+  vistaActual: 'mes' | 'dia' = 'mes';
 
   fechaActual = new Date();
   citas: Cita[] = [];
   isLoading = false;
+  showModal = false;
+  isSubmitting = false;
+  citaEditar: Cita | null = null;
+  fechaPreseleccionada: Date | null = null;
+  horaPreseleccionada: string | null = null;
+  fechaDiaSeleccionado = new Date();
+  horasDelDia: { hora: string; citas: Cita[] }[] = [];
 
   diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   semanas: DiaCalendario[][] = [];
@@ -158,4 +166,143 @@ export class CalendarioComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+  abrirModalNueva(fecha?: Date, hora?: string): void {
+  this.citaEditar = null;
+  this.fechaPreseleccionada = fecha
+    ? new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate())
+    : null;
+  this.horaPreseleccionada = hora ?? null;
+  this.showModal = true;
+}
+
+abrirModalEditar(cita: Cita): void {
+  this.citaEditar = cita;
+  this.horaPreseleccionada = null;
+  this.showModal = true;
+}
+
+cerrarModal(): void {
+  this.showModal = false;
+  this.citaEditar = null;
+  this.fechaPreseleccionada = null;
+  this.horaPreseleccionada = null;
+}
+
+guardarCita(data: any): void {
+  this.isSubmitting = true;
+
+  if (this.citaEditar) {
+    this.citaService.update(this.citaEditar.id, data).subscribe({
+      next: () => {
+        this.toast.success('Cita actualizada correctamente.');
+        this.cerrarModal();
+        this.isSubmitting = false;
+        this.cargarCitasDelMes();
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.toast.error('No se pudo actualizar la cita.');
+        this.isSubmitting = false;
+        this.cdr.detectChanges();
+      },
+    });
+  } else {
+    this.citaService.create(data).subscribe({
+      next: () => {
+        this.toast.success('Cita creada correctamente.');
+        this.cerrarModal();
+        this.isSubmitting = false;
+        this.cargarCitasDelMes();
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.toast.error('No se pudo crear la cita.');
+        this.isSubmitting = false;
+        this.cdr.detectChanges();
+      },
+    });
+  }
+}
+
+eliminarCita(): void {
+  if (!this.citaEditar) return;
+
+  this.citaService.delete(this.citaEditar.id).subscribe({
+    next: () => {
+      this.toast.success('Cita eliminada correctamente.');
+      this.cerrarModal();
+      this.cargarCitasDelMes();
+      this.cdr.detectChanges();
+    },
+    error: () => {
+      this.toast.error('No se pudo eliminar la cita.');
+      this.cdr.detectChanges();
+    },
+  });
+}
+get nombreDiaCompleto(): string {
+  return this.fechaDiaSeleccionado.toLocaleDateString('es-AR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  }).replace(/^\w/, c => c.toUpperCase());
+}
+
+cargarCitasDelDia(): void {
+  this.isLoading = true;
+  const inicio = new Date(this.fechaDiaSeleccionado);
+  inicio.setHours(0, 0, 0, 0);
+  const fin = new Date(this.fechaDiaSeleccionado);
+  fin.setHours(23, 59, 59, 999);
+
+  this.citaService.getByRango(inicio, fin).subscribe({
+    next: (data) => {
+      this.generarHorasDelDia(data);
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    },
+    error: () => {
+      this.toast.error('No se pudieron cargar las citas del día.');
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    },
+  });
+}
+
+generarHorasDelDia(citas: Cita[]): void {
+  const horas: { hora: string; citas: Cita[] }[] = [];
+  for (let h = 8; h <= 20; h++) {
+    const horaStr = `${h.toString().padStart(2, '0')}:00`;
+    const citasDeEstaHora = citas.filter(c => {
+      const fechaCita = new Date(c.fechaHora);
+      return fechaCita.getHours() === h;
+    }).sort((a, b) => new Date(a.fechaHora).getTime() - new Date(b.fechaHora).getTime());
+    horas.push({ hora: horaStr, citas: citasDeEstaHora });
+  }
+  this.horasDelDia = horas;
+}
+
+diaAnterior(): void {
+  this.fechaDiaSeleccionado = new Date(this.fechaDiaSeleccionado);
+  this.fechaDiaSeleccionado.setDate(this.fechaDiaSeleccionado.getDate() - 1);
+  this.cargarCitasDelDia();
+}
+
+diaSiguiente(): void {
+  this.fechaDiaSeleccionado = new Date(this.fechaDiaSeleccionado);
+  this.fechaDiaSeleccionado.setDate(this.fechaDiaSeleccionado.getDate() + 1);
+  this.cargarCitasDelDia();
+}
+
+irAHoyDia(): void {
+  this.fechaDiaSeleccionado = new Date();
+  this.cargarCitasDelDia();
+}
+cambiarVista(vista: 'mes' | 'dia'): void {
+  console.log('cambiarVista llamado con:', vista);
+  this.vistaActual = vista;
+  console.log('vistaActual ahora es:', this.vistaActual);
+  if (vista === 'dia') {
+    this.fechaDiaSeleccionado = new Date(this.fechaActual);
+    this.cargarCitasDelDia();
+  }
+}
 }
