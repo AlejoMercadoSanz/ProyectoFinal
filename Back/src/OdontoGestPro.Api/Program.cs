@@ -1,13 +1,14 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OdontoGestPro.Application.Interfaces;
 using OdontoGestPro.Application.Settings;
+using OdontoGestPro.Infrastructure.Jobs;
 using OdontoGestPro.Infrastructure.Persistence;
 using OdontoGestPro.Infrastructure.Repositories;
 using OdontoGestPro.Infrastructure.Security;
 using OdontoGestPro.Infrastructure.Services;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,12 @@ builder.Services.AddScoped<IAdjuntoRepository, AdjuntoRepository>();
 builder.Services.AddScoped<IAdjuntoService, AdjuntoService>();
 builder.Services.AddScoped<ICitaRepository, CitaRepository>();
 builder.Services.AddScoped<ICitaService, CitaService>();
+builder.Services.AddScoped<ICobroRepository, CobroRepository>();
+builder.Services.AddScoped<ICobroService, CobroService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddHostedService<RecordatorioCitasJob>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // --- Autenticación JWT ---
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>()!;

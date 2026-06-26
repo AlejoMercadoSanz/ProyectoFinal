@@ -7,10 +7,14 @@ namespace OdontoGestPro.Infrastructure.Services;
 public class CitaService : ICitaService
 {
     private readonly ICitaRepository _citaRepository;
+    private readonly IPacienteRepository _pacienteRepository;
+    private readonly IEmailService _emailService;
 
-    public CitaService(ICitaRepository citaRepository)
+    public CitaService(ICitaRepository citaRepository, IPacienteRepository pacienteRepository, IEmailService emailService)
     {
         _citaRepository = citaRepository;
+        _pacienteRepository = pacienteRepository;
+        _emailService = emailService;
     }
 
     public async Task<List<CitaDto>> GetByRangoAsync(DateTime desde, DateTime hasta)
@@ -38,6 +42,23 @@ public class CitaService : ICitaService
         };
 
         var created = await _citaRepository.CreateAsync(cita);
+
+        try
+        {
+            var paciente = await _pacienteRepository.GetByIdAsync(created.PacienteId);
+            if (paciente != null && !string.IsNullOrEmpty(paciente.Email))
+            {
+                await _emailService.SendConfirmacionCitaAsync(
+                    paciente.Email,
+                    $"{paciente.Nombre} {paciente.Apellido}",
+                    created.FechaHora,
+                    created.DuracionMinutos,
+                    created.TipoTratamiento
+                );
+            }
+        }
+        catch { }
+
         return MapToDto(created);
     }
 
@@ -54,7 +75,28 @@ public class CitaService : ICitaService
             Notas = request.Notas,
         };
 
-        return await _citaRepository.UpdateAsync(cita);
+        var resultado = await _citaRepository.UpdateAsync(cita);
+
+        if (resultado && request.Estado != "Cancelada")
+        {
+            try
+            {
+                var paciente = await _pacienteRepository.GetByIdAsync(request.PacienteId);
+                if (paciente != null && !string.IsNullOrEmpty(paciente.Email))
+                {
+                    await _emailService.SendModificacionCitaAsync(
+                        paciente.Email,
+                        $"{paciente.Nombre} {paciente.Apellido}",
+                        request.FechaHora,
+                        request.DuracionMinutos,
+                        request.TipoTratamiento
+                    );
+                }
+            }
+            catch { }
+        }
+
+        return resultado;
     }
 
     public async Task<bool> DeleteAsync(int id)

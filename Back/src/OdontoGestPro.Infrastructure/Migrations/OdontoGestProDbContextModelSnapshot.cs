@@ -100,6 +100,54 @@ namespace OdontoGestPro.Infrastructure.Migrations
                     b.ToTable("Citas");
                 });
 
+            modelBuilder.Entity("OdontoGestPro.Domain.Entities.Cobro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Concepto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaProcedimiento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModoPago")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Monto")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TratamientoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PacienteId");
+
+                    b.HasIndex("TratamientoId");
+
+                    b.ToTable("Cobros");
+                });
+
             modelBuilder.Entity("OdontoGestPro.Domain.Entities.Paciente", b =>
                 {
                     b.Property<int>("Id")
@@ -208,6 +256,10 @@ namespace OdontoGestPro.Infrastructure.Migrations
                     b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
@@ -248,6 +300,23 @@ namespace OdontoGestPro.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("OdontoGestPro.Domain.Entities.Cobro", b =>
+                {
+                    b.HasOne("OdontoGestPro.Domain.Entities.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OdontoGestPro.Domain.Entities.Tratamiento", "Tratamiento")
+                        .WithMany()
+                        .HasForeignKey("TratamientoId");
+
+                    b.Navigation("Paciente");
+
+                    b.Navigation("Tratamiento");
                 });
 
             modelBuilder.Entity("OdontoGestPro.Domain.Entities.Tratamiento", b =>

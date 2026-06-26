@@ -151,3 +151,6 @@ C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.pdb
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\OdontoGestPro.Api.genruntimeconfig.cache
 C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\obj\Debug\net8.0\ref\OdontoGestPro.Api.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\SendGrid.dll
+C:\Users\Alejo\Desktop\Trabajo Final\Back\src\OdontoGestPro.Api\bin\Debug\net8.0\StarkbankEcdsa.dll

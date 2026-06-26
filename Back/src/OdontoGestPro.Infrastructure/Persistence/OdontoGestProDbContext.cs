@@ -15,4 +15,12 @@ public class OdontoGestProDbContext : DbContext
     public DbSet<Tratamiento> Tratamientos => Set<Tratamiento>();
     public DbSet<Adjunto> Adjuntos => Set<Adjunto>();
     public DbSet<Cita> Citas => Set<Cita>();
+    public DbSet<Cobro> Cobros => Set<Cobro>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Cobro>()
+            .Property(c => c.Monto)
+            .HasPrecision(18, 2);
+    }
 }
