@@ -1,0 +1,117 @@
+.cm-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.cm-modal {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.cm-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cm-modal__title { font-size: 1rem; font-weight: 700; color: #1e293b; margin: 0; }
+
+.cm-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cm-modal__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cm-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.cm-field label { font-size: 0.82rem; font-weight: 600; color: #475569; }
+
+.cm-field input,
+.cm-field select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  color: #1e293b;
+  background-color: #f8fafc;
+  font-family: inherit;
+}
+
+.cm-field input:focus,
+.cm-field select:focus { outline: none; border-color: #93c5fd; }
+.cm-field--error input { border-color: #fca5a5; }
+.cm-field span { font-size: 0.75rem; color: #dc2626; }
+
+.cm-modo-pago { display: flex; gap: 0.5rem; }
+
+.cm-modo-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background-color: #f8fafc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.cm-modo-btn--active {
+  background-color: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.cm-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cm-btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cm-btn-primary:hover { background-color: #1d4ed8; }
+.cm-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.cm-btn-secondary {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.cm-btn-secondary:hover { background-color: #f8fafc; }

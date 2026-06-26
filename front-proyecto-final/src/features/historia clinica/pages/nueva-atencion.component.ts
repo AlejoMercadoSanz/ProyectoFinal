@@ -25,6 +25,7 @@ export class NuevaAtencionComponent implements OnInit {
   isLoading = true;
   isSubmitting = false;
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
 
   adjuntosSeleccionados: File[] = [];
   adjuntosPreview: { nombre: string; tipo: string; url?: string; adjuntoId?: number }[] = [];
@@ -35,7 +36,7 @@ export class NuevaAtencionComponent implements OnInit {
   tiposTratamiento = [
     'Endodoncia', 'Profilaxis', 'Extracción', 'Ortodoncia',
     'Implante', 'Blanqueamiento', 'Restauración', 'Periodoncia',
-    'Cirugía Oral', 'Otro',
+    'Cirugía Oral', 'Otro','Carie'
   ];
 
   atajosRapidos = [
@@ -51,23 +52,41 @@ export class NuevaAtencionComponent implements OnInit {
     return this.tratamientoId !== null;
   }
 
-  get dientesParseados(): { numero: string; estado: string }[] {
-    const valor = this.form.get('dienteAfectado')?.value ?? '';
-    if (!valor) return [];
-    return valor.split(',').map((par: string) => {
-      const [numero, estado] = par.split(':');
-      return { numero, estado: estado ?? 'seleccionado' };
-    });
-  }
+  get dientesParseados(): { numero: string; caras: { cara: string; estado: string }[] }[] {
+  const valor = this.form.get('dienteAfectado')?.value ?? '';
+  if (!valor) return [];
+  return valor.split('|').map((parte: string) => {
+    const [numero, carasStr] = parte.split(':');
+    const caras: { cara: string; estado: string }[] = carasStr
+      ? carasStr.split(',').map((par: string) => {
+          const [cara, estado] = par.split('=');
+          return { cara, estado };
+        }).filter((c: { cara: string; estado: string }) => c.estado !== 'sano')
+      : [];
+    return { numero, caras };
+  }).filter((d: { numero: string; caras: { cara: string; estado: string }[] }) => d.caras.length > 0);
+}
 
-  getEstadoLabel(estado: string): string {
-    switch (estado) {
-      case 'caries': return 'Caries';
-      case 'tratado': return 'Tratado';
-      case 'seleccionado': return 'Seleccionado';
-      default: return estado;
-    }
+getEstadoLabel(estado: string): string {
+  switch (estado) {
+    case 'caries': return 'Caries';
+    case 'obturacion': return 'Obturación';
+    case 'corona': return 'Corona';
+    case 'sano': return 'Sano';
+    default: return estado;
   }
+}
+
+getCaraLabel(cara: string): string {
+  switch (cara) {
+    case 'V': return 'Vestibular';
+    case 'O': return 'Oclusal';
+    case 'L': return 'Lingual';
+    case 'M': return 'Mesial';
+    case 'D': return 'Distal';
+    default: return cara;
+  }
+}
 
   constructor(
     private route: ActivatedRoute,

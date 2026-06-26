@@ -66,6 +66,18 @@ export const routes: Routes = [
     import('../features/calendario/pages/calendario.component').then(m => m.CalendarioComponent),
   canActivate: [authGuard],
 },
+{
+  path: 'cobros',
+  loadComponent: () =>
+    import('../features/cobros/pages/cobros.component').then(m => m.CobrosComponent),
+  canActivate: [authGuard],
+},
+{
+  path: 'usuarios',
+  loadComponent: () =>
+    import('../features/usuarios/pages/usuarios.component').then(m => m.UsuariosComponent),
+  canActivate: [authGuard],
+},
   {
     path: '**',
     redirectTo: 'login',

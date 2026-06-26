@@ -21,6 +21,7 @@ export class PacienteDetalleComponent implements OnInit {
   isSubmitting = false;
   editForm!: FormGroup;
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
 
   constructor(
     private route: ActivatedRoute,

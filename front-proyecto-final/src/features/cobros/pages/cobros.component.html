@@ -1,0 +1,273 @@
+<div class="dashboard-layout">
+
+  <aside class="sidebar">
+    <a routerLink="/dashboard" class="sidebar__brand">
+      <div class="sidebar__brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z" />
+        </svg>
+      </div>
+      <div>
+        <p class="sidebar__brand-name">OdontoGest Pro</p>
+        <p class="sidebar__brand-tagline">Clinical Management</p>
+      </div>
+    </a>
+
+    <nav class="sidebar__nav">
+      <a routerLink="/dashboard" class="sidebar__link" routerLinkActive="sidebar__link--active" [routerLinkActiveOptions]="{exact: true}">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        Dashboard
+      </a>
+      <a routerLink="/pacientes" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+        Pacientes
+      </a>
+      <a routerLink="/calendario" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        Calendario
+      </a>
+      <a routerLink="/historial-clinica" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+        Historial Médico
+      </a>
+      <a routerLink="/cobros" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+        Cobros
+      </a>
+      <a *ngIf="user?.rol === 'Admin'" routerLink="/usuarios" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+        Usuarios
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar__title">Registrar Nuevo Pago</div>
+      <div class="topbar__actions">
+        <button class="topbar__icon-btn">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM8.05 16a2 2 0 003.9 0h-3.9z"/></svg>
+        </button>
+        <div class="topbar__dropdown-wrap" (clickOutside)="dropdownAbierto = false">
+          <button class="topbar__user" (click)="dropdownAbierto = !dropdownAbierto">
+            <div class="topbar__user-info">
+              <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
+              <p class="topbar__user-role">{{ user?.rol }}</p>
+            </div>
+            <div class="topbar__user-avatar">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+            </div>
+          </button>
+
+          <div class="topbar__dropdown" *ngIf="dropdownAbierto" (click)="$event.stopPropagation()">
+            <div class="topbar__dropdown-header">
+              <p class="topbar__dropdown-name">{{ user?.nombreUsuario }}</p>
+              <p class="topbar__dropdown-role">{{ user?.rol }}</p>
+            </div>
+            <div class="topbar__dropdown-divider"></div>
+            <button class="topbar__dropdown-item" (click)="showPerfilModal = true; dropdownAbierto = false">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+              Mi perfil
+            </button>
+            <button class="topbar__dropdown-item topbar__dropdown-item--danger" (click)="logout()">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="cobros-layout">
+
+        <div class="col-left">
+
+          <div class="card" *ngIf="!pacienteSeleccionado">
+            <h3 class="card__title">Buscar Paciente</h3>
+            <div class="search-wrap">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+              <input type="text" placeholder="Escribí el nombre o apellido..." [formControl]="searchControl" class="search-input" />
+            </div>
+            <p class="search-hint" *ngIf="!buscando && pacientes.length === 0 && (searchControl.value?.length ?? 0) < 2">Ingresá al menos 2 caracteres para buscar.</p>
+            <div class="paciente-resultados" *ngIf="pacientes.length > 0">
+              <div class="paciente-resultado" *ngFor="let p of pacientes" (click)="seleccionarPaciente(p)">
+                <div class="paciente-resultado__avatar">{{ getInitials(p.nombre, p.apellido) }}</div>
+                <div>
+                  <p class="paciente-resultado__nombre">{{ p.nombre }} {{ p.apellido }}</p>
+                  <p class="paciente-resultado__dni">DNI: {{ p.dni }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card paciente-card" *ngIf="pacienteSeleccionado">
+            <div class="paciente-card__info">
+              <div class="paciente-card__avatar">{{ getInitials(pacienteSeleccionado.nombre, pacienteSeleccionado.apellido) }}</div>
+              <div>
+                <p class="paciente-card__label">Paciente Seleccionado</p>
+                <p class="paciente-card__nombre">{{ pacienteSeleccionado.nombre }} {{ pacienteSeleccionado.apellido }}</p>
+              </div>
+            </div>
+            <button class="btn-cambiar" (click)="cambiarPaciente()">Cambiar</button>
+          </div>
+
+          <div class="card" *ngIf="pacienteSeleccionado">
+            <div class="form-field">
+              <label>Tratamiento</label>
+              <select (change)="onTratamientoChange($event)">
+                <option value="">Sin tratamiento asociado</option>
+                <option *ngFor="let t of tratamientos" [value]="t.id" [selected]="form.get('tratamientoId')?.value === t.id">{{ t.tipo }} - {{ t.descripcion }}</option>
+              </select>
+            </div>
+
+            <div class="form-field" [class.form-field--error]="isFieldInvalid('concepto')">
+              <label>Concepto</label>
+              <input type="text" [formControl]="$any(form.get('concepto'))" placeholder="Ej: Limpieza Dental Profunda" />
+              <span *ngIf="isFieldInvalid('concepto')">Concepto requerido.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field" [class.form-field--error]="isFieldInvalid('fechaProcedimiento')">
+                <label>Fecha de Procedimiento</label>
+                <input type="date" [formControl]="$any(form.get('fechaProcedimiento'))" />
+                <span *ngIf="isFieldInvalid('fechaProcedimiento')">Fecha requerida.</span>
+              </div>
+              <div class="form-field">
+                <label>Estado</label>
+                <select [formControl]="$any(form.get('estado'))">
+                  <option value="Pagado">Pagado</option>
+                  <option value="Pendiente">Pendiente</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="odonto-link" *ngIf="tratamientoSeleccionadoObj">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <div>
+                <p class="odonto-link__title">Selección de Pieza Dental</p>
+                <p class="odonto-link__sub">
+                  {{ tratamientoSeleccionadoObj.dienteAfectado ? formatDientesAfectados(tratamientoSeleccionadoObj.dienteAfectado) : 'Sin piezas dentales registradas' }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" *ngIf="pacienteSeleccionado && cobrosDelPaciente.length > 0">
+            <div class="card__header">
+              <h3 class="card__title">Últimos Pagos de {{ pacienteSeleccionado.nombre }}</h3>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Concepto</th>
+                  <th>Método</th>
+                  <th>Estado</th>
+                  <th>Monto</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cobro of cobrosDelPaciente.slice(0, 5)">
+                  <td>{{ cobro.fechaProcedimiento | date: 'dd/MM/yyyy' }}</td>
+                  <td>{{ cobro.concepto }}</td>
+                  <td>{{ cobro.modoPago }}</td>
+                  <td><span class="badge" [ngClass]="getEstadoClass(cobro.estado)">{{ cobro.estado }}</span></td>
+                  <td class="monto">{{ formatMonto(cobro.monto) }}</td>
+                  <td>
+                    <div class="table__acciones-group">
+                      <button class="table__link" (click)="abrirModalEditar(cobro)">Editar</button>
+                      <button class="table__delete" (click)="abrirModalEliminar(cobro)" title="Eliminar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"></path>
+                          <path d="M10 11v6"></path><path d="M14 11v6"></path>
+                          <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="col-right">
+          <div class="resumen-card">
+            <h3 class="resumen-card__title">Resumen de Cobro</h3>
+
+            <div class="resumen-card__monto-label">Precio a Cobrar</div>
+            <div class="resumen-card__monto">
+              <span class="resumen-card__currency">$</span>
+              <input type="number" [formControl]="$any(form.get('monto'))" placeholder="0.00" class="resumen-card__monto-input" min="0" step="0.01" />
+            </div>
+            <span class="form-error" *ngIf="isFieldInvalid('monto')">Monto requerido.</span>
+
+            <div class="modo-pago">
+              <button class="modo-btn" [class.modo-btn--active]="modoPagoSeleccionado === 'Efectivo'" (click)="seleccionarModoPago('Efectivo')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                Efectivo
+              </button>
+              <button class="modo-btn" [class.modo-btn--active]="modoPagoSeleccionado === 'Tarjeta'" (click)="seleccionarModoPago('Tarjeta')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+                Tarjeta
+              </button>
+              <button class="modo-btn" [class.modo-btn--active]="modoPagoSeleccionado === 'Transferencia'" (click)="seleccionarModoPago('Transferencia')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+                Transf.
+              </button>
+            </div>
+
+            <div class="resumen-detalle">
+              <div class="resumen-detalle__fila">
+                <span>Subtotal</span>
+                <span>{{ formatMonto(totalResumen) }}</span>
+              </div>
+              <div class="resumen-detalle__fila">
+                <span>Impuestos (0%)</span>
+                <span>$0.00</span>
+              </div>
+              <div class="resumen-detalle__fila resumen-detalle__fila--total">
+                <span>Total</span>
+                <span>{{ formatMonto(totalResumen) }}</span>
+              </div>
+            </div>
+
+            <button class="btn-registrar" (click)="registrarCobro()" [disabled]="isSubmitting || !pacienteSeleccionado">
+              <span *ngIf="!isSubmitting">Registrar Cobro</span>
+              <span *ngIf="isSubmitting">Registrando...</span>
+            </button>
+
+            <p class="resumen-card__hint">Se enviará el recibo automáticamente al paciente.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+</div>
+
+<app-cobro-form-modal
+  [visible]="showEditModal"
+  [cobro]="cobroEditar"
+  [isSubmitting]="isSubmittingEdit"
+  (cerrar)="cerrarModalEditar()"
+  (guardar)="guardarEdicion($event)">
+</app-cobro-form-modal>
+
+<app-confirm-delete-modal
+  [visible]="showDeleteModal"
+  titulo="Eliminar Cobro"
+  [mensaje]="'¿Eliminar el cobro de ' + formatMonto(cobroAEliminar?.monto ?? 0) + '?'"
+  subtitulo="Esta acción no se puede deshacer."
+  (cerrar)="cerrarModalEliminar()"
+  (confirmar)="confirmarEliminar()">
+</app-confirm-delete-modal>

@@ -14,8 +14,7 @@
 .login-image {
   flex: 1;
   position: relative;
-  background-image: url('/assets/images/dental-bg.jpg');
-  background-size: cover;
+  background-image: url('/images/dental-bg.jpg');
   background-position: center;
   background-color: #1e3a5f;
   display: flex;

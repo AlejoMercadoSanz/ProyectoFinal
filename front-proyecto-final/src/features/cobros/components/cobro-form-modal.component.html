@@ -1,0 +1,56 @@
+<div class="cm-overlay" *ngIf="visible" (click)="onCerrar()">
+  <div class="cm-modal" (click)="$event.stopPropagation()">
+
+    <div class="cm-modal__header">
+      <h2 class="cm-modal__title">Editar Cobro</h2>
+      <button class="cm-modal__close" (click)="onCerrar()">×</button>
+    </div>
+
+    <div class="cm-modal__body">
+
+      <div class="cm-field" [class.cm-field--error]="isFieldInvalid('concepto')">
+        <label>Concepto</label>
+        <input type="text" [formControl]="$any(form.get('concepto'))" placeholder="Ej: Limpieza Dental" />
+        <span *ngIf="isFieldInvalid('concepto')">Concepto requerido.</span>
+      </div>
+
+      <div class="cm-field" [class.cm-field--error]="isFieldInvalid('fechaProcedimiento')">
+        <label>Fecha de Procedimiento</label>
+        <input type="date" [formControl]="$any(form.get('fechaProcedimiento'))" />
+        <span *ngIf="isFieldInvalid('fechaProcedimiento')">Fecha requerida.</span>
+      </div>
+
+      <div class="cm-field" [class.cm-field--error]="isFieldInvalid('monto')">
+        <label>Monto</label>
+        <input type="number" [formControl]="$any(form.get('monto'))" placeholder="0.00" min="0" step="0.01" />
+        <span *ngIf="isFieldInvalid('monto')">Monto requerido.</span>
+      </div>
+
+      <div class="cm-field">
+        <label>Estado</label>
+        <select [formControl]="$any(form.get('estado'))">
+          <option value="Pagado">Pagado</option>
+          <option value="Pendiente">Pendiente</option>
+        </select>
+      </div>
+
+      <div class="cm-field">
+        <label>Método de Pago</label>
+        <div class="cm-modo-pago">
+          <button type="button" class="cm-modo-btn" [class.cm-modo-btn--active]="modoPagoSeleccionado === 'Efectivo'" (click)="seleccionarModoPago('Efectivo')">Efectivo</button>
+          <button type="button" class="cm-modo-btn" [class.cm-modo-btn--active]="modoPagoSeleccionado === 'Tarjeta'" (click)="seleccionarModoPago('Tarjeta')">Tarjeta</button>
+          <button type="button" class="cm-modo-btn" [class.cm-modo-btn--active]="modoPagoSeleccionado === 'Transferencia'" (click)="seleccionarModoPago('Transferencia')">Transf.</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cm-modal__footer">
+      <button class="cm-btn-secondary" (click)="onCerrar()" [disabled]="isSubmitting">Cancelar</button>
+      <button class="cm-btn-primary" (click)="onGuardar()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Guardando...' : 'Actualizar Cobro' }}
+      </button>
+    </div>
+
+  </div>
+</div>

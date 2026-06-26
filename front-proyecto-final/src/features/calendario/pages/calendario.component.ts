@@ -24,6 +24,7 @@ interface DiaCalendario {
 })
 export class CalendarioComponent implements OnInit {
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
   vistaActual: 'mes' | 'dia' = 'mes';
 
   fechaActual = new Date();

@@ -347,3 +347,4 @@
   .sidebar { display: none; }
   .timeline-item { grid-template-columns: 80px 1fr; }
 }
+.timeline-item__btn--cobrar:hover { color: #16a34a; background-color: #dcfce7; }

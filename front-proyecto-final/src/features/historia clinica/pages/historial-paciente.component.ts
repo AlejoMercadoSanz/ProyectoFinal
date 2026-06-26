@@ -8,11 +8,12 @@ import { Paciente } from '../../pacientes/models/paciente.model';
 import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
 import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-modal/confirm-delete-modal.component';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-historial-paciente',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, ConfirmDeleteModalComponent],
+  imports: [CommonModule, RouterLink, RouterLinkActive, ConfirmDeleteModalComponent, ReactiveFormsModule],
   templateUrl: './historial-paciente.component.html',
   styleUrls: ['./historial-paciente.component.css'],
 })
@@ -24,8 +25,12 @@ export class HistorialPacienteComponent implements OnInit {
   isSubmitting = false;
   tratamientoEditar: Tratamiento | null = null;
   showDeleteModal = false;
+  searchControl = new FormControl('');
+  tratamientosTodos: Tratamiento[] = [];
   tratamientoAEliminar: Tratamiento | null = null;
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
+  showPerfilModal = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,20 +63,31 @@ export class HistorialPacienteComponent implements OnInit {
     });
   }
 
-  loadTratamientos(pacienteId: number): void {
-    this.tratamientoService.getByPaciente(pacienteId).subscribe({
-      next: (data) => {
-        this.tratamientos = data;
-        this.isLoading = false;
-        this.cdr.detectChanges();
-      },
-      error: () => {
-        this.toast.error('No se pudieron cargar los tratamientos.');
-        this.isLoading = false;
-        this.cdr.detectChanges();
-      },
-    });
-  }
+  get tratamientosFiltrados(): Tratamiento[] {
+  const q = this.searchControl.value?.toLowerCase().trim() ?? '';
+  if (!q) return this.tratamientosTodos;
+  return this.tratamientosTodos.filter(t =>
+    t.tipo?.toLowerCase().includes(q) ||
+    t.descripcion?.toLowerCase().includes(q) ||
+    t.notasClinicas?.toLowerCase().includes(q)
+  );
+}
+
+ loadTratamientos(pacienteId: number): void {
+  this.tratamientoService.getByPaciente(pacienteId).subscribe({
+    next: (data) => {
+      this.tratamientosTodos = data;
+      this.tratamientos = data;
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    },
+    error: () => {
+      this.toast.error('No se pudieron cargar los tratamientos.');
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    },
+  });
+}
 
   getInitials(nombre: string, apellido: string): string {
     return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
@@ -173,4 +189,7 @@ export class HistorialPacienteComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+  onPerfilActualizado(data: { nombreUsuario: string; rol: string }): void {
+  this.user = data;
+}
 }

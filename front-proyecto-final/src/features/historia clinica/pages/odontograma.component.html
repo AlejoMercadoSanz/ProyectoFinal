@@ -1,6 +1,5 @@
 <div class="dashboard-layout">
 
-  <!-- Sidebar -->
   <aside class="sidebar">
     <a routerLink="/dashboard" class="sidebar__brand">
       <div class="sidebar__brand-icon">
@@ -36,10 +35,13 @@
         <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
         Cobros
       </a>
+      <a *ngIf="user?.rol === 'Admin'" routerLink="/usuarios" class="sidebar__link" routerLinkActive="sidebar__link--active">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+        Usuarios
+      </a>
     </nav>
   </aside>
 
-  <!-- Main -->
   <div class="main">
 
     <header class="topbar">
@@ -48,120 +50,381 @@
         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
         <span class="topbar__breadcrumb-link" style="cursor:pointer" (click)="volver()">Nueva Atención</span>
         <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
-        <span>Selección de Piezas Dentales</span>
+        <span>Odontograma</span>
       </div>
       <div class="topbar__actions">
-        <button class="topbar__user" (click)="logout()">
-          <div class="topbar__user-info">
-            <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
-            <p class="topbar__user-role">{{ user?.rol }}</p>
+        <div class="topbar__dropdown-wrap" (clickOutside)="dropdownAbierto = false">
+          <button class="topbar__user" (click)="dropdownAbierto = !dropdownAbierto">
+            <div class="topbar__user-info">
+              <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
+              <p class="topbar__user-role">{{ user?.rol }}</p>
+            </div>
+            <div class="topbar__user-avatar">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+            </div>
+          </button>
+
+          <div class="topbar__dropdown" *ngIf="dropdownAbierto" (click)="$event.stopPropagation()">
+            <div class="topbar__dropdown-header">
+              <p class="topbar__dropdown-name">{{ user?.nombreUsuario }}</p>
+              <p class="topbar__dropdown-role">{{ user?.rol }}</p>
+            </div>
+            <div class="topbar__dropdown-divider"></div>
+            <button class="topbar__dropdown-item" (click)="dropdownAbierto = false">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+              Mi perfil
+            </button>
+            <button class="topbar__dropdown-item topbar__dropdown-item--danger" (click)="logout()">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Cerrar sesión
+            </button>
           </div>
-          <div class="topbar__user-avatar">
-            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-          </div>
-        </button>
+        </div>
       </div>
     </header>
 
     <main class="content">
 
       <div class="odonto-header">
-        <h1 class="odonto-header__title">Selección de Piezas Dentales</h1>
-        <p class="odonto-header__subtitle">Hacé clic en un diente para seleccionarlo. Clic adicional para cambiar su estado.</p>
-      </div>
-
-      <!-- Leyenda -->
-      <div class="leyenda">
-        <div class="leyenda__item" *ngFor="let item of leyenda">
-          <span class="leyenda__dot" [style.background-color]="item.color"></span>
-          {{ item.label }}
+        <div class="odonto-header__left">
+          <h1 class="odonto-header__title">Odontograma Interactivo</h1>
+          <p class="odonto-header__subtitle">Clic izquierdo para aplicar el estado activo · Clic derecho para limpiar la cara</p>
+        </div>
+        <div class="modo-toggle">
+          <button class="modo-toggle__btn" [class.modo-toggle__btn--active]="modo === 'adulto'" (click)="cambiarModo('adulto')">Adulto</button>
+          <button class="modo-toggle__btn" [class.modo-toggle__btn--active]="modo === 'nino'" (click)="cambiarModo('nino')">Niño</button>
         </div>
       </div>
 
-      <!-- Diente seleccionado -->
-      <div class="seleccion-info" *ngIf="dientesSeleccionados.length > 0">
-  <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-  {{ dientesSeleccionados.length }} pieza(s) seleccionada(s): {{ dientesSeleccionados.map(d => d.numero).join(', ') }}
-</div>
+      <div class="estado-selector">
+        <span class="estado-selector__label">Estado activo:</span>
+        <button *ngFor="let e of estados"
+          class="estado-btn"
+          [class.estado-btn--active]="estadoActivo === e.valor"
+          [style.border-color]="estadoActivo === e.valor ? e.color : '#e2e8f0'"
+          (click)="estadoActivo = e.valor">
+          <span class="estado-btn__dot" [style.background-color]="e.color" [style.border]="e.valor === 'sano' ? '1px solid #cbd5e1' : 'none'"></span>
+          {{ e.label }}
+        </button>
+      </div>
 
-      <!-- Odontograma -->
       <div class="odontograma-wrapper">
 
-        <!-- Cuadrantes superiores -->
-        <div class="cuadrantes-superiores">
-          <div class="cuadrante">
-            <p class="cuadrante__label">CUADRANTE 1</p>
-            <div class="dientes-row">
-              <div *ngFor="let diente of cuadrante1"
-                [class]="getDienteClass(diente)"
-                (click)="toggleDiente(diente)"
-                [title]="'Diente ' + diente.numero">
-                <div class="diente__corona"></div>
-                <div class="diente__raiz"></div>
-                <span class="diente__numero">{{ diente.numero }}</span>
+        <ng-container *ngIf="modo === 'adulto'">
+          <div class="cuadrantes-row">
+            <div class="cuadrante">
+              <p class="cuadrante__label">CUADRANTE 1</p>
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante1">
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cuadrante-separator"></div>
+
+            <div class="cuadrante">
+              <p class="cuadrante__label">CUADRANTE 2</p>
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante2">
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="cuadrante">
-            <p class="cuadrante__label">CUADRANTE 2</p>
-            <div class="dientes-row">
-              <div *ngFor="let diente of cuadrante2"
-                [class]="getDienteClass(diente)"
-                (click)="toggleDiente(diente)"
-                [title]="'Diente ' + diente.numero">
-                <div class="diente__corona"></div>
-                <div class="diente__raiz"></div>
-                <span class="diente__numero">{{ diente.numero }}</span>
+          <div class="separador-horizontal"></div>
+
+          <div class="cuadrantes-row">
+            <div class="cuadrante">
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante4">
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                </div>
+              </div>
+              <p class="cuadrante__label">CUADRANTE 4</p>
+            </div>
+
+            <div class="cuadrante-separator"></div>
+
+            <div class="cuadrante">
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante3">
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                </div>
+              </div>
+              <p class="cuadrante__label">CUADRANTE 3</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="modo === 'nino'">
+          <div class="cuadrantes-row">
+            <div class="cuadrante">
+              <p class="cuadrante__label">CUADRANTE 5</p>
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante5">
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cuadrante-separator"></div>
+
+            <div class="cuadrante">
+              <p class="cuadrante__label">CUADRANTE 6</p>
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante6">
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="separador-horizontal"></div>
+          <div class="separador-horizontal"></div>
 
-        <!-- Cuadrantes inferiores -->
-        <div class="cuadrantes-inferiores">
-          <div class="cuadrante">
-            <div class="dientes-row">
-              <div *ngFor="let diente of cuadrante4"
-                [class]="getDienteClass(diente)"
-                (click)="toggleDiente(diente)"
-                [title]="'Diente ' + diente.numero">
-                <div class="diente__numero">{{ diente.numero }}</div>
-                <div class="diente__raiz diente__raiz--inferior"></div>
-                <div class="diente__corona diente__corona--inferior"></div>
+          <div class="cuadrantes-row">
+            <div class="cuadrante">
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante8">
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                </div>
               </div>
+              <p class="cuadrante__label">CUADRANTE 8</p>
             </div>
-            <p class="cuadrante__label">CUADRANTE 4</p>
-          </div>
 
-          <div class="cuadrante">
-            <div class="dientes-row">
-              <div *ngFor="let diente of cuadrante3"
-                [class]="getDienteClass(diente)"
-                (click)="toggleDiente(diente)"
-                [title]="'Diente ' + diente.numero">
-                <div class="diente__numero">{{ diente.numero }}</div>
-                <div class="diente__raiz diente__raiz--inferior"></div>
-                <div class="diente__corona diente__corona--inferior"></div>
+            <div class="cuadrante-separator"></div>
+
+            <div class="cuadrante">
+              <div class="dientes-row">
+                <div class="diente-wrap" *ngFor="let diente of cuadrante7">
+                  <div class="diente-grid" [class.diente--extraido]="diente.extraido !== 'no'" [title]="'Diente ' + diente.numero">
+                    <svg class="diente-lineas" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="0" x2="11" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="0" x2="25" y2="11" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="0" y1="36" x2="11" y2="25" stroke="#334155" stroke-width="0.8"/>
+                      <line x1="36" y1="36" x2="25" y2="25" stroke="#334155" stroke-width="0.8"/>
+                    </svg>
+                    <ng-container *ngIf="diente.extraido === 'no'">
+                      <div class="cara cara--top" [style.background-color]="getColorCara(diente.caras.L)"
+                        (click)="clickCara(diente, 'L', $event)" (contextmenu)="clickCaraDerecha(diente, 'L', $event)"></div>
+                      <div class="cara cara--left" [style.background-color]="getColorCara(diente.caras.M)"
+                        (click)="clickCara(diente, 'M', $event)" (contextmenu)="clickCaraDerecha(diente, 'M', $event)"></div>
+                      <div class="cara cara--center" [style.background-color]="getColorCara(diente.caras.O)"
+                        (click)="clickCara(diente, 'O', $event)" (contextmenu)="clickCaraDerecha(diente, 'O', $event)"></div>
+                      <div class="cara cara--right" [style.background-color]="getColorCara(diente.caras.D)"
+                        (click)="clickCara(diente, 'D', $event)" (contextmenu)="clickCaraDerecha(diente, 'D', $event)"></div>
+                      <div class="cara cara--bottom" [style.background-color]="getColorCara(diente.caras.V)"
+                        (click)="clickCara(diente, 'V', $event)" (contextmenu)="clickCaraDerecha(diente, 'V', $event)"></div>
+                    </ng-container>
+                    <div class="diente-extraido-x"
+                      *ngIf="diente.extraido !== 'no'"
+                      [class.diente-extraido-x--existente]="diente.extraido === 'existente'"
+                      [class.diente-extraido-x--aextraer]="diente.extraido === 'aExtraer'"
+                      (contextmenu)="clickCaraDerecha(diente, 'V', $event)">✕</div>
+                  </div>
+                  <div class="diente-numero">{{ diente.numero }}</div>
+                </div>
               </div>
+              <p class="cuadrante__label">CUADRANTE 7</p>
             </div>
-            <p class="cuadrante__label">CUADRANTE 3</p>
           </div>
-        </div>
+        </ng-container>
 
       </div>
 
-      <!-- Footer -->
+      <div class="resumen-dientes" *ngIf="dientesModificados.length > 0">
+        <p class="resumen-dientes__title">Dientes con hallazgos ({{ dientesModificados.length }}):</p>
+        <div class="resumen-dientes__lista">
+          <span class="resumen-dientes__item" *ngFor="let d of dientesModificados">
+            {{ d.extraido !== 'no' ? 'Diente ' + d.numero + (d.extraido === 'existente' ? ' (Extraído)' : ' (A extraer)') : 'Diente ' + d.numero }}
+          </span>
+        </div>
+      </div>
+
       <div class="odonto-footer">
         <button class="btn-secondary" (click)="volver()">
           <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          Volver a Nueva Atención
+          Volver sin guardar
         </button>
-        <p class="odonto-footer__hint">Verificá las piezas antes de confirmar</p>
+        <p class="odonto-footer__hint">Clic derecho sobre una cara para limpiarla · Clic derecho sobre ✕ para restaurar</p>
         <button class="btn-primary" (click)="confirmarSeleccion()">
-          Confirmar Selección
+          Confirmar Odontograma
           <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
         </button>
       </div>

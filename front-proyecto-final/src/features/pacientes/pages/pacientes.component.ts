@@ -7,6 +7,7 @@ import { PacienteService } from '../services/paciente.service';
 import { Paciente } from '../models/paciente.model';
 import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
+import { CitaService } from '../../calendario/services/cita.service';
 import { PacienteFormModalComponent } from '../components/paciente-form-modal.component';
 import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-modal/confirm-delete-modal.component';
 
@@ -25,6 +26,8 @@ export class PacientesComponent implements OnInit {
   isSubmitting = false;
   pacienteAEliminar: Paciente | null = null;
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
+  citasHoy = 0;
 
   searchControl = new FormControl('');
 
@@ -34,6 +37,7 @@ export class PacientesComponent implements OnInit {
   constructor(
     private pacienteService: PacienteService,
     private authService: AuthService,
+    private citaService: CitaService,
     private router: Router,
     private toast: ToastService,
     private cdr: ChangeDetectorRef,
@@ -43,6 +47,7 @@ export class PacientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPacientes();
+    this.loadCitasHoy();
 
     this.searchControl.valueChanges
       .pipe(debounceTime(400), distinctUntilChanged())
@@ -64,6 +69,23 @@ export class PacientesComponent implements OnInit {
         this.toast.error('No se pudieron cargar los pacientes.');
         this.isLoading = false;
         this.cdr.detectChanges();
+      },
+    });
+  }
+
+  loadCitasHoy(): void {
+    const inicio = new Date();
+    inicio.setHours(0, 0, 0, 0);
+    const fin = new Date();
+    fin.setHours(23, 59, 59, 999);
+
+    this.citaService.getByRango(inicio, fin).subscribe({
+      next: (data) => {
+        this.citasHoy = data.length;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.citasHoy = 0;
       },
     });
   }

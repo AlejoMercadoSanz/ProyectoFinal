@@ -1,0 +1,51 @@
+<div class="pm-overlay" *ngIf="visible" (click)="onCerrar()">
+  <div class="pm-modal" (click)="$event.stopPropagation()">
+
+    <div class="pm-modal__header">
+      <h2 class="pm-modal__title">Mi Perfil</h2>
+      <button class="pm-modal__close" (click)="onCerrar()">×</button>
+    </div>
+
+    <div class="pm-modal__body">
+
+      <div class="pm-avatar">
+        <div class="pm-avatar__circle">
+          {{ user?.nombreUsuario?.charAt(0)?.toUpperCase() }}
+        </div>
+        <div>
+          <p class="pm-avatar__nombre">{{ user?.nombreUsuario }}</p>
+          <p class="pm-avatar__rol">{{ user?.rol }}</p>
+        </div>
+      </div>
+
+      <div class="pm-divider"></div>
+
+      <div class="pm-field" [class.pm-field--error]="isFieldInvalid('nombreUsuario')">
+        <label>Nombre de Usuario</label>
+        <input type="text" [formControl]="$any(form.get('nombreUsuario'))" />
+        <span *ngIf="isFieldInvalid('nombreUsuario')">Mínimo 3 caracteres.</span>
+      </div>
+
+      <div class="pm-field" [class.pm-field--error]="isFieldInvalid('email')">
+        <label>Email</label>
+        <input type="email" [formControl]="$any(form.get('email'))" placeholder="Tu email actual o nuevo" />
+        <span *ngIf="isFieldInvalid('email')">Email inválido.</span>
+      </div>
+
+      <div class="pm-field" [class.pm-field--error]="isFieldInvalid('password')">
+        <label>Nueva Contraseña <span class="pm-field__hint">(dejá vacío para no cambiar)</span></label>
+        <input type="password" [formControl]="$any(form.get('password'))" placeholder="Mínimo 6 caracteres" />
+        <span *ngIf="isFieldInvalid('password')">Mínimo 6 caracteres.</span>
+      </div>
+
+    </div>
+
+    <div class="pm-modal__footer">
+      <button class="pm-btn-secondary" (click)="onCerrar()" [disabled]="isSubmitting">Cancelar</button>
+      <button class="pm-btn-primary" (click)="guardar()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Guardando...' : 'Guardar Cambios' }}
+      </button>
+    </div>
+
+  </div>
+</div>

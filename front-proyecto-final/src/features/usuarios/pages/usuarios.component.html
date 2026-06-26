@@ -45,19 +45,13 @@
   <div class="main">
 
     <header class="topbar">
-      <div class="topbar__search">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
-        <input type="text" placeholder="Buscar paciente o historial..." />
-      </div>
+      <div class="topbar__title">Gestión de Usuarios</div>
       <div class="topbar__actions">
-        <button class="topbar__icon-btn" title="Notificaciones">
+        <button class="topbar__icon-btn">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM8.05 16a2 2 0 003.9 0h-3.9z"/></svg>
         </button>
-        <button class="topbar__icon-btn" title="Configuración">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
-        </button>
         <div class="topbar__dropdown-wrap" (clickOutside)="dropdownAbierto = false">
-          <button class="topbar__user" (click)="dropdownAbierto = !dropdownAbierto" title="Cerrar sesión">
+          <button class="topbar__user" (click)="dropdownAbierto = !dropdownAbierto">
             <div class="topbar__user-info">
               <p class="topbar__user-name">{{ user?.nombreUsuario }}</p>
               <p class="topbar__user-role">{{ user?.rol }}</p>
@@ -66,6 +60,7 @@
               <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
             </div>
           </button>
+
           <div class="topbar__dropdown" *ngIf="dropdownAbierto" (click)="$event.stopPropagation()">
             <div class="topbar__dropdown-header">
               <p class="topbar__dropdown-name">{{ user?.nombreUsuario }}</p>
@@ -89,66 +84,113 @@
 
       <div class="content__header">
         <div>
-          <h1 class="content__title">Historial Médico</h1>
-          <p class="content__subtitle">Buscá un paciente para acceder a su historial clínico.</p>
+          <h1 class="content__title">Usuarios del Sistema</h1>
+          <p class="content__subtitle">Administrá los usuarios y sus niveles de acceso.</p>
         </div>
+        <button class="btn-primary" (click)="abrirModalNuevo()">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/></svg>
+          Nuevo Usuario
+        </button>
       </div>
 
-      <div class="search-card">
-        <div class="search-card__input-wrap">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
-          <input
-            type="text"
-            placeholder="Escribí el nombre o apellido del paciente..."
-            [formControl]="searchControl"
-            class="search-card__input"
-          />
-        </div>
-        <p class="search-card__hint" *ngIf="!buscado">Ingresá al menos 2 caracteres para buscar.</p>
-      </div>
+      <section class="card">
+        <table class="table" *ngIf="!isLoading && usuarios.length > 0">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of usuarios">
+              <td>
+                <div class="usuario-cell">
+                  <div class="usuario-cell__avatar">{{ u.nombreUsuario.charAt(0).toUpperCase() }}</div>
+                  <span class="usuario-cell__nombre">{{ u.nombreUsuario }}</span>
+                </div>
+              </td>
+              <td class="table__email">{{ u.email }}</td>
+              <td><span class="badge" [ngClass]="getRolClass(u.rol)">{{ u.rol }}</span></td>
+              <td>
+                <div class="table__acciones-group">
+                  <button class="table__link" (click)="abrirModalEditar(u)">Editar</button>
+                  <button class="table__delete" (click)="abrirModalEliminar(u)" title="Eliminar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"></path>
+                        <path d="M10 11v6"></path><path d="M14 11v6"></path>
+                        <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"></path>
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div class="resultados" *ngIf="buscado">
+        <div class="empty-state" *ngIf="!isLoading && usuarios.length === 0">
+          <p>No hay usuarios registrados.</p>
+        </div>
 
         <div class="loading-state" *ngIf="isLoading">
-          <p>Buscando pacientes...</p>
+          <p>Cargando usuarios...</p>
         </div>
-
-        <div class="empty-state" *ngIf="!isLoading && pacientes.length === 0">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <p>No se encontraron pacientes con ese nombre.</p>
-        </div>
-
-        <div class="resultados__lista" *ngIf="!isLoading && pacientes.length > 0">
-          <p class="resultados__count">{{ pacientes.length }} paciente(s) encontrado(s)</p>
-          <div class="paciente-card" *ngFor="let paciente of pacientes">
-            <div class="paciente-card__avatar">
-              {{ getInitials(paciente.nombre, paciente.apellido) }}
-            </div>
-            <div class="paciente-card__info">
-              <p class="paciente-card__nombre">{{ paciente.nombre }} {{ paciente.apellido }}</p>
-              <p class="paciente-card__meta">DNI: {{ paciente.dni }} · {{ paciente.email }}</p>
-            </div>
-            <span class="badge" [ngClass]="'badge--' + paciente.estado.toLowerCase().replace(' ', '-')">
-              {{ paciente.estado }}
-            </span>
-            <div class="paciente-card__acciones">
-              <a [routerLink]="['/historial-clinica', paciente.id, 'nueva-atencion']" class="btn-secondary">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v3H6a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3V6z" clip-rule="evenodd"/></svg>
-                Nueva Atención
-              </a>
-              <a [routerLink]="['/historial-clinica', paciente.id]" class="btn-primary">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
-                Ver Historial
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      </section>
 
     </main>
   </div>
 
 </div>
+
+<div class="u-modal-overlay" *ngIf="showModal" (click)="cerrarModal()">
+  <div class="u-modal" (click)="$event.stopPropagation()">
+    <div class="u-modal__header">
+      <h2 class="u-modal__title">{{ usuarioEditar ? 'Editar Usuario' : 'Nuevo Usuario' }}</h2>
+      <button class="u-modal__close" (click)="cerrarModal()">×</button>
+    </div>
+
+    <div class="u-modal__body">
+      <div class="form-field" [class.form-field--error]="isFieldInvalid('nombreUsuario')">
+        <label>Nombre de Usuario</label>
+        <input type="text" [formControl]="$any(form.get('nombreUsuario'))" placeholder="Ej: drasanz" />
+        <span *ngIf="isFieldInvalid('nombreUsuario')">Mínimo 3 caracteres.</span>
+      </div>
+
+      <div class="form-field" [class.form-field--error]="isFieldInvalid('email')">
+        <label>Email</label>
+        <input type="email" [formControl]="$any(form.get('email'))" placeholder="Ej: dra@clinica.com" />
+        <span *ngIf="isFieldInvalid('email')">Email inválido.</span>
+      </div>
+
+      <div class="form-field" [class.form-field--error]="isFieldInvalid('password')">
+        <label>Contraseña {{ usuarioEditar ? '(dejá vacío para no cambiar)' : '' }}</label>
+        <input type="password" [formControl]="$any(form.get('password'))" placeholder="Mínimo 6 caracteres" />
+        <span *ngIf="isFieldInvalid('password')">Mínimo 6 caracteres.</span>
+      </div>
+
+      <div class="form-field">
+        <label>Rol</label>
+        <select [formControl]="$any(form.get('rol'))">
+          <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="u-modal__footer">
+      <button class="btn-secondary" (click)="cerrarModal()" [disabled]="isSubmitting">Cancelar</button>
+      <button class="btn-primary" (click)="guardarUsuario()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Guardando...' : (usuarioEditar ? 'Actualizar' : 'Crear Usuario') }}
+      </button>
+    </div>
+  </div>
+</div>
+<app-confirm-delete-modal
+  [visible]="showDeleteModal"
+  titulo="Eliminar Usuario"
+  [mensaje]="'¿Eliminar al usuario ' + (usuarioAEliminar?.nombreUsuario ?? '') + '?'"
+  subtitulo="Esta acción desactivará al usuario del sistema."
+  (cerrar)="cerrarModalEliminar()"
+  (confirmar)="confirmarEliminar()">
+</app-confirm-delete-modal>

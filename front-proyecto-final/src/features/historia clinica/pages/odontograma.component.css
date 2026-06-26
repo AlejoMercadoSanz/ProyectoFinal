@@ -86,7 +86,6 @@
 }
 
 .topbar__breadcrumb-link:hover { text-decoration: underline; }
-
 .topbar__actions { display: flex; align-items: center; gap: 0.75rem; }
 
 .topbar__user {
@@ -100,7 +99,6 @@
   border-radius: 0.5rem;
 }
 
-.topbar__user-info { text-align: right; }
 .topbar__user-name { font-size: 0.85rem; font-weight: 600; color: #1e293b; text-transform: capitalize; }
 .topbar__user-role { font-size: 0.7rem; color: #94a3b8; }
 
@@ -117,159 +115,239 @@
 
 .topbar__user-avatar svg { width: 20px; height: 20px; }
 
-.content { padding: 1.5rem; flex: 1; max-width: 900px; margin: 0 auto; width: 100%; }
+.content { padding: 1.5rem; flex: 1; overflow-x: auto; }
 
 .odonto-header { margin-bottom: 1.25rem; }
 .odonto-header__title { font-size: 1.3rem; font-weight: 700; color: #1e293b; margin: 0 0 0.25rem; }
 .odonto-header__subtitle { font-size: 0.82rem; color: #94a3b8; margin: 0; }
 
-/* ===== Leyenda ===== */
-.leyenda {
+.estado-selector {
   display: flex;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   background-color: #ffffff;
   border: 1px solid #e5e9f0;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
 }
 
-.leyenda__item {
+.estado-selector__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.estado-btn {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 999px;
+  background-color: #f8fafc;
   font-size: 0.78rem;
+  font-weight: 600;
   color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.leyenda__dot {
+.estado-btn--active {
+  background-color: #eff6ff;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.estado-btn__dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-/* ===== Selección info ===== */
-.seleccion-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: #eff6ff;
-  border: 1px solid #bfdbfe;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #2563eb;
-  margin-bottom: 1rem;
-}
-
-.seleccion-info svg { width: 16px; height: 16px; }
-
-/* ===== Odontograma ===== */
 .odontograma-wrapper {
   background-color: #ffffff;
   border: 1px solid #e5e9f0;
   border-radius: 0.75rem;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
 }
 
-.cuadrantes-superiores,
-.cuadrantes-inferiores {
+.cuadrantes-row {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-}
-
-.separador-horizontal {
-  height: 1px;
-  background-color: #e2e8f0;
-  margin: 1rem 0;
+  align-items: flex-start;
+  gap: 0;
 }
 
 .cuadrante { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.cuadrante__label { font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+.cuadrante__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
 
-.dientes-row { display: flex; gap: 4px; }
+.cuadrante-separator {
+  width: 2px;
+  background-color: #cbd5e1;
+  align-self: stretch;
+  margin: 0 0.75rem;
+}
 
-/* ===== Diente ===== */
-.diente {
+.separador-horizontal {
+  height: 2px;
+  background-color: #cbd5e1;
+  margin: 0.75rem 0;
+}
+
+.dientes-row { display: flex; gap: 3px; }
+
+.diente-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
-  width: 36px;
   gap: 2px;
-  transition: transform 0.1s ease;
 }
 
-.diente:hover { transform: scale(1.1); }
-
-.diente__corona {
-  width: 28px;
-  height: 22px;
-  border-radius: 6px 6px 3px 3px;
-  background-color: #e2e8f0;
-  border: 2px solid #cbd5e1;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.diente__corona--inferior {
-  border-radius: 3px 3px 6px 6px;
-}
-
-.diente__raiz {
-  width: 14px;
-  height: 16px;
-  background-color: #e2e8f0;
-  border-radius: 0 0 4px 4px;
-  border: 2px solid #cbd5e1;
-  border-top: none;
-  transition: background-color 0.15s ease;
-}
-
-.diente__raiz--inferior {
-  border-radius: 4px 4px 0 0;
-  border-bottom: none;
-  border-top: 2px solid #cbd5e1;
-}
-
-.diente__numero {
+.diente-numero {
   font-size: 0.6rem;
-  color: #94a3b8;
   font-weight: 600;
+  color: #64748b;
   text-align: center;
   line-height: 1;
 }
 
-/* ===== Estados ===== */
-.diente--seleccionado .diente__corona,
-.diente--seleccionado .diente__raiz {
-  background-color: #2563eb;
-  border-color: #1d4ed8;
+/* ===== 5 caras por diente con forma trapezoidal ===== */
+.diente-grid {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  cursor: pointer;
 }
 
-.diente--seleccionado .diente__numero { color: #2563eb; }
-
-.diente--caries .diente__corona,
-.diente--caries .diente__raiz {
-  background-color: #dc2626;
-  border-color: #b91c1c;
+.diente-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid #334155;
+  pointer-events: none;
+  z-index: 3;
 }
 
-.diente--caries .diente__numero { color: #dc2626; }
-
-.diente--tratado .diente__corona,
-.diente--tratado .diente__raiz {
-  background-color: #0891b2;
-  border-color: #0e7490;
+.diente-lineas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
 }
 
-.diente--tratado .diente__numero { color: #0891b2; }
+.diente--extraido {
+  background-color: #f1f5f9;
+}
 
-/* ===== Footer ===== */
+.diente-extraido-x {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #1e293b;
+  z-index: 5;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cara {
+  position: absolute;
+  cursor: pointer;
+  transition: filter 0.1s ease;
+  outline: 0.5px solid #334155;
+}
+
+.cara:hover { filter: brightness(0.80); }
+
+/* Oclusal - centro */
+.cara--center {
+  top: 30%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  z-index: 2;
+}
+
+/* Vestibular/Lingual - arriba */
+.cara--top {
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  clip-path: polygon(0% 0%, 100% 0%, 70% 30%, 30% 30%);
+  z-index: 1;
+}
+
+/* Lingual/Vestibular - abajo */
+.cara--bottom {
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  clip-path: polygon(30% 70%, 70% 70%, 100% 100%, 0% 100%);
+  z-index: 1;
+}
+
+/* Mesial - izquierda */
+.cara--left {
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  clip-path: polygon(0% 0%, 30% 30%, 30% 70%, 0% 100%);
+  z-index: 1;
+}
+
+/* Distal - derecha */
+.cara--right {
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  clip-path: polygon(100% 0%, 100% 100%, 70% 70%, 70% 30%);
+  z-index: 1;
+}
+
+.resumen-dientes {
+  background-color: #f8fafc;
+  border: 1px solid #e5e9f0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.resumen-dientes__title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0 0 0.5rem;
+}
+
+.resumen-dientes__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.resumen-dientes__item {
+  background-color: #dbeafe;
+  color: #2563eb;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
 .odonto-footer {
   display: flex;
   align-items: center;
@@ -318,7 +396,40 @@
 
 @media (max-width: 768px) {
   .sidebar { display: none; }
-  .diente { width: 28px; }
-  .diente__corona { width: 22px; height: 18px; }
-  .diente__raiz { width: 10px; height: 12px; }
+  .diente-grid { width: 28px; height: 28px; }
 }
+.odonto-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.odonto-header__left { flex: 1; }
+
+.modo-toggle {
+  display: flex;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.modo-toggle__btn {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+  background-color: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modo-toggle__btn--active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+.diente-extraido-x--existente { color: #dc2626; }
+.diente-extraido-x--aextraer { color: #2563eb; }

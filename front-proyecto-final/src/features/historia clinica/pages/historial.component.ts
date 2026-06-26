@@ -21,6 +21,7 @@ export class HistorialComponent {
   isLoading = false;
   buscado = false;
   user: { nombreUsuario: string; rol: string } | null = null;
+  dropdownAbierto = false;
 
   searchControl = new FormControl('');
 
