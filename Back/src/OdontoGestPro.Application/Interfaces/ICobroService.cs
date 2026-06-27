@@ -6,6 +6,7 @@ public interface ICobroService
 {
     Task<List<CobroDto>> GetByPacienteIdAsync(int pacienteId);
     Task<List<CobroDto>> GetAllAsync();
+    Task<List<CobroDto>> GetByMesAsync(int anio, int mes);
     Task<CobroDto?> GetByIdAsync(int id);
     Task<CobroDto> CreateAsync(CobroRequestDto request);
     Task<bool> UpdateAsync(int id, CobroRequestDto request);

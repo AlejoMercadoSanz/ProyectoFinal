@@ -84,4 +84,9 @@ public class CobroService : ICobroService
         ModoPago = c.ModoPago,
         Estado = c.Estado,
     };
+    public async Task<List<CobroDto>> GetByMesAsync(int anio, int mes)
+    {
+        var cobros = await _cobroRepository.GetByMesAsync(anio, mes);
+        return cobros.Select(MapToDto).ToList();
+    }
 }

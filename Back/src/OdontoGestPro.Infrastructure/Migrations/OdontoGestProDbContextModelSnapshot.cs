@@ -148,6 +148,40 @@ namespace OdontoGestPro.Infrastructure.Migrations
                     b.ToTable("Cobros");
                 });
 
+            modelBuilder.Entity("OdontoGestPro.Domain.Entities.Gasto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Monto")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gastos");
+                });
+
             modelBuilder.Entity("OdontoGestPro.Domain.Entities.Paciente", b =>
                 {
                     b.Property<int>("Id")

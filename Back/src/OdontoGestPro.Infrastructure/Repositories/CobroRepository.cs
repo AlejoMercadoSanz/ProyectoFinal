@@ -80,4 +80,12 @@ public class CobroRepository : ICobroRepository
         await _context.SaveChangesAsync();
         return true;
     }
+    public async Task<List<Cobro>> GetByMesAsync(int anio, int mes)
+    {
+        return await _context.Cobros
+            .Include(c => c.Paciente)
+            .Where(c => c.Activo && c.FechaProcedimiento.Year == anio && c.FechaProcedimiento.Month == mes)
+            .OrderByDescending(c => c.FechaProcedimiento)
+            .ToListAsync();
+    }
 }

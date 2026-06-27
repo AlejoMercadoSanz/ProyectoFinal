@@ -39,6 +39,8 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddHostedService<RecordatorioCitasJob>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IGastoRepository, GastoRepository>();
+builder.Services.AddScoped<IGastoService, GastoService>();
 
 // --- Autenticación JWT ---
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>()!;

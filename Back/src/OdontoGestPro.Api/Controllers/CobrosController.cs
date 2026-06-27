@@ -61,4 +61,10 @@ public class CobrosController : ControllerBase
         if (!deleted) return NotFound();
         return NoContent();
     }
+    [HttpGet("mes")]
+    public async Task<IActionResult> GetByMes([FromQuery] int anio, [FromQuery] int mes)
+    {
+        var cobros = await _cobroService.GetByMesAsync(anio, mes);
+        return Ok(cobros);
+    }
 }

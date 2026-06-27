@@ -10,4 +10,5 @@ public interface ICobroRepository
     Task<Cobro> CreateAsync(Cobro cobro);
     Task<bool> UpdateAsync(Cobro cobro);
     Task<bool> DeleteAsync(int id);
+    Task<List<Cobro>> GetByMesAsync(int anio, int mes);
 }

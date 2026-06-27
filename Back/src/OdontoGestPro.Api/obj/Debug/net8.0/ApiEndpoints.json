@@ -186,6 +186,27 @@
   },
   {
     "ContainingType": "OdontoGestPro.Api.Controllers.CobrosController",
+    "Method": "GetByMes",
+    "RelativePath": "api/Cobros/mes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "anio",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "mes",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.CobrosController",
     "Method": "GetByPaciente",
     "RelativePath": "api/Cobros/paciente/{pacienteId}",
     "HttpMethod": "GET",
@@ -196,6 +217,101 @@
         "Name": "pacienteId",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.GastosController",
+    "Method": "GetByMes",
+    "RelativePath": "api/Gastos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "anio",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "mes",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.GastosController",
+    "Method": "Create",
+    "RelativePath": "api/Gastos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OdontoGestPro.Application.DTOs.Gastos.GastoRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.GastosController",
+    "Method": "Update",
+    "RelativePath": "api/Gastos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "OdontoGestPro.Application.DTOs.Gastos.GastoRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.GastosController",
+    "Method": "Delete",
+    "RelativePath": "api/Gastos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OdontoGestPro.Api.Controllers.GastosController",
+    "Method": "GetResumen",
+    "RelativePath": "api/Gastos/resumen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "anio",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "mes",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

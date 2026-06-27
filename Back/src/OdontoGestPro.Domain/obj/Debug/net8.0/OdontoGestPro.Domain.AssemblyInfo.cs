@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OdontoGestPro.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19594f10259541ffa0c78e10c8410c251602b3b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e60ad20dafb140a3835f23e232a1e71ba3fc388")]
 [assembly: System.Reflection.AssemblyProductAttribute("OdontoGestPro.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OdontoGestPro.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
