@@ -144,11 +144,16 @@
 .content { padding: 1.5rem; max-width: 900px; width: 100%; margin: 0 auto; }
 
 /* ===== Page header ===== */
+.page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 .page-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .breadcrumb__link {
@@ -348,3 +353,20 @@
   .timeline-item { grid-template-columns: 80px 1fr; }
 }
 .timeline-item__btn--cobrar:hover { color: #16a34a; background-color: #dcfce7; }
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary svg { width: 16px; height: 16px; }
+.btn-secondary:hover { background-color: #eff6ff; }

@@ -78,6 +78,12 @@ export const routes: Routes = [
     import('../features/usuarios/pages/usuarios.component').then(m => m.UsuariosComponent),
   canActivate: [authGuard],
 },
+{
+  path: 'finanzas',
+  loadComponent: () =>
+    import('../features/finanzas/pages/finanzas.component').then(m => m.FinanzasComponent),
+  canActivate: [authGuard],
+},
   {
     path: '**',
     redirectTo: 'login',

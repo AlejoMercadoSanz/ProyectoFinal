@@ -9,6 +9,7 @@ import { AuthService } from '../../auth/login/services/auth.service';
 import { ToastService } from '../../../shared/toast/toast.service';
 import { ConfirmDeleteModalComponent } from '../../../shared/confirm-delete-modal/confirm-delete-modal.component';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ConsentimientoService } from '../../../shared/services/consentimiento.service';
 
 @Component({
   selector: 'app-historial-paciente',
@@ -40,6 +41,7 @@ export class HistorialPacienteComponent implements OnInit {
     private authService: AuthService,
     private toast: ToastService,
     private cdr: ChangeDetectorRef,
+    private consentimientoService: ConsentimientoService,
   ) {
     this.user = this.authService.getUser();
   }
@@ -191,5 +193,9 @@ export class HistorialPacienteComponent implements OnInit {
   }
   onPerfilActualizado(data: { nombreUsuario: string; rol: string }): void {
   this.user = data;
+}
+descargarConsentimiento(): void {
+  if (!this.paciente) return;
+  this.consentimientoService.generarPDF(this.paciente, this.tratamientosTodos);
 }
 }
