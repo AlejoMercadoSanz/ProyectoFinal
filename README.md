@@ -109,7 +109,7 @@ Las notificaciones por email se envían a través de SendGrid. Para habilitarlas
 
 | Usuario | Contraseña | Rol |
 |---------|------------|-----|
-| admin   | admin123   | Admin |
+| admin   | Admin123   | Admin |
 
 ---
 
